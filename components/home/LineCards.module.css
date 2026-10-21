@@ -10,9 +10,8 @@
 
 .card {
   position: relative;
+  /* el ancho de la grilla manda: la altura sale de la proporción del diseño, así el espacio entre cards es siempre el gap */
   aspect-ratio: 435 / 776;
-  max-height: 86svh;
-  min-height: 460px;
   border-radius: 6px;
   overflow: hidden;
   background: var(--line);
@@ -138,25 +137,38 @@
   box-shadow: 0 8px 18px -10px rgba(37, 30, 24, 0.5);
 }
 
-/* tablet y celular: carrusel horizontal con snap */
-@media (max-width: 960px) {
+/* tablet: una debajo de la otra, cards apaisadas con el producto a la derecha */
+@media (max-width: 900px) {
   .grid {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: min(78vw, 380px);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-    margin-inline: calc(-1 * max(var(--gutter), env(safe-area-inset-left, 0px)));
-    padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px));
-    scroll-padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px));
-  }
-  .grid::-webkit-scrollbar {
-    display: none;
+    grid-template-columns: 1fr;
   }
   .card {
-    scroll-snap-align: start;
-    max-height: none;
+    aspect-ratio: 5 / 4;
+  }
+  .copy {
+    max-width: 58%;
+  }
+  .title {
+    max-width: none;
+  }
+  .product {
+    left: 56%;
+    top: 16%;
+    width: 30%;
+  }
+}
+
+/* celular: cards verticales, texto arriba y producto abajo */
+@media (max-width: 560px) {
+  .card {
+    aspect-ratio: 4 / 5;
+  }
+  .copy {
+    max-width: none;
+  }
+  .product {
+    left: 36%;
+    top: 47%;
+    width: 44%;
   }
 }
