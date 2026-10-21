@@ -1,0 +1,162 @@
+.section {
+  padding-bottom: var(--section);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 24px);
+}
+
+.card {
+  position: relative;
+  aspect-ratio: 435 / 776;
+  max-height: 86svh;
+  min-height: 460px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--line);
+  color: var(--ink);
+  isolation: isolate;
+}
+
+/* trama del color de la línea que aparece al pasar el mouse */
+.trama {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.08);
+  background-size: 180px auto;
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+  gap: clamp(14px, 1.6vw, 22px);
+  padding: clamp(24px, 3vw, 42px) clamp(22px, 2.6vw, 40px);
+}
+
+.title {
+  font-size: clamp(2.25rem, 1.2rem + 2.6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  max-width: 8ch;
+}
+
+.text {
+  max-width: 34ch;
+  font-size: var(--fs-sm);
+  line-height: 1.75;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: clamp(0.95rem, 0.8rem + 0.3vw, 1.125rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.cta span {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0% 2px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.5s var(--ease-out);
+}
+.cta svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.35s, transform 0.5s var(--ease-out);
+}
+.card:hover .cta span,
+.cta:focus-visible span {
+  background-size: 100% 2px;
+}
+.card:hover .cta svg,
+.cta:focus-visible svg {
+  opacity: 1;
+  transform: none;
+}
+
+/* toda la card es clickeable: el link se estira sobre ella */
+.cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+/* producto: tapa arriba y cuerpo abajo, inclinado y cortado por el borde inferior */
+.product {
+  position: absolute;
+  left: 30%;
+  top: 41%;
+  width: 52%;
+  z-index: 1;
+  will-change: transform;
+}
+
+.float {
+  transform: rotate(19deg);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+.cap,
+.body {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 18px 24px rgba(37, 30, 24, 0.18));
+  will-change: transform;
+}
+
+.body {
+  margin-top: 24%;
+}
+
+.pill {
+  background: var(--bg);
+  color: var(--fg);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
+}
+.pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -10px rgba(37, 30, 24, 0.5);
+}
+
+/* tablet y celular: carrusel horizontal con snap */
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 380px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * max(var(--gutter), env(safe-area-inset-left, 0px)));
+    padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px));
+    scroll-padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px));
+  }
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
+  .card {
+    scroll-snap-align: start;
+    max-height: none;
+  }
+}

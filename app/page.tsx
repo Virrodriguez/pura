@@ -2,7 +2,7 @@ import Link from "next/link";
 import Hero from "@/components/home/Hero";
 import Intro from "@/components/home/Intro";
 import Gallery from "@/components/home/Gallery";
-import LinesStack from "@/components/home/LinesStack";
+import LineCards from "@/components/home/LineCards";
 import ExperienceGrid from "@/components/ExperienceGrid";
 import { SectionHead } from "@/components/ui";
 
@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <Intro />
       <Gallery />
-      <LinesStack />
+      <LineCards />
       <section className="container" style={{ paddingBottom: "var(--section)" }}>
         <SectionHead
           eyebrow="Conocé el producto"

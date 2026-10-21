@@ -14,6 +14,10 @@ export type Line = {
   /** color del texto sobre el panel */
   ink: string;
   intro: string;
+  /** texto corto de la card del home */
+  card: string;
+  /** render del producto en dos partes (tapa y cuerpo) para animarlas por separado */
+  render: { cap: string; body: string };
   detail: string;
   features: Feature[];
   /** imágenes de la galería vertical en /nuestras-lineas (null = render pendiente) */
@@ -41,6 +45,8 @@ export const lines: Line[] = [
     detail:
       "Nuestra barra original: filtros minerales de amplio espectro en una base de ceras y emolientes de origen natural. Pensada para llevar todos los días y reaplicar sin pensarlo.",
     features,
+    card: "Filtros minerales en una barra que se desliza sin arrastre. Sin residuo blanco, para usar todos los días.",
+    render: { cap: "/img/lineas/clasica-tapa.png", body: "/img/lineas/clasica-cuerpo.png" },
     gallery: [null, "/img/chica.png", null],
   },
   {
@@ -55,6 +61,8 @@ export const lines: Line[] = [
     detail:
       "Menos ingredientes, elegidos uno por uno. Una barra hipoalergénica que cuida las zonas más delicadas del rostro: contorno de ojos, nariz y orejas.",
     features,
+    card: "Fórmula suave y sin fragancia para pieles reactivas. Calma mientras protege, incluso en el contorno de ojos.",
+    render: { cap: "/img/lineas/pieles-sensibles-tapa.png", body: "/img/lineas/pieles-sensibles-cuerpo.png" },
     gallery: [null, null, null],
   },
   {
@@ -69,6 +77,8 @@ export const lines: Line[] = [
     detail:
       "Pigmentos minerales que se funden con la piel. Protege, empareja el tono y reemplaza la base en los días de sol.",
     features,
+    card: "Pigmentos minerales que se funden con la piel. Protege, empareja el tono y reemplaza la base en los días de sol.",
+    render: { cap: "/img/lineas/con-color-tapa.png", body: "/img/lineas/con-color-cuerpo.png" },
     gallery: [null, null, null],
   },
 ];

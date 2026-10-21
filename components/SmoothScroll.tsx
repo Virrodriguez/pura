@@ -33,12 +33,27 @@ export default function SmoothScroll() {
     };
   }, []);
 
-  // Al cambiar de página: arriba de todo y recalcular triggers
+  // Al cambiar de página: arriba de todo (o al #ancla si la URL trae una) y recalcular triggers
   useEffect(() => {
     window.__lenis?.scrollTo(0, { immediate: true });
     window.scrollTo(0, 0);
-    const id = requestAnimationFrame(() => ScrollTrigger.refresh());
-    return () => cancelAnimationFrame(id);
+    let timer = 0;
+    const id = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      const hash = decodeURIComponent(window.location.hash.slice(1));
+      const target = hash ? document.getElementById(hash) : null;
+      if (!target) return;
+      // esperar a que termine la cortina de entrada y bajar suave hasta la sección
+      timer = window.setTimeout(() => {
+        const lenis = window.__lenis;
+        if (lenis) lenis.scrollTo(target, { offset: -24, duration: 1.4 });
+        else target.scrollIntoView({ behavior: "smooth" });
+      }, 700);
+    });
+    return () => {
+      cancelAnimationFrame(id);
+      clearTimeout(timer);
+    };
   }, [pathname]);
 
   return null;

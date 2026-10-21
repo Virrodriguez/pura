@@ -9,7 +9,7 @@ Sitio de PURA – Protección Solar Natural (protector solar facial en barra). N
 ## Estructura
 - `lib/content.ts` — TODO el texto, las líneas, las experiencias y la navegación. Editar contenido acá, no en los componentes.
 - `app/` — rutas: `/`, `/sobre-la-marca`, `/nuestras-lineas`, `/experiencias`, `/experiencias/[slug]`.
-- `components/` — layout (Header + menú, Footer, Cursor, SmoothScroll), `home/` (secciones del home), piezas compartidas (`LinePanel`, `LineStory`, `ExperienceCard`, `ui.tsx`).
+- `components/` — layout (Header + menú, Footer, Cursor, SmoothScroll), `home/` (secciones del home), piezas compartidas (`LineStory`, `ExperienceCard`, `ui.tsx`). "Elegí tu línea" del home = `home/LineCards` (renders en `public/img/lineas`, tapa y cuerpo separados).
 - `public/` — video del hero, foto, íconos, logotipo e isologotipo, trama SVG.
 - `figma-assets/` — originales que entregó la diseñadora (no se sirven).
 - `docs/referencias/` — bocetos y contexto de marca previos.
