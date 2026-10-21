@@ -1,0 +1,96 @@
+.card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.frame {
+  perspective: 900px;
+}
+
+.media {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  background-size: 200px auto;
+  transition: background-size 0.9s var(--ease-out), border-radius 0.5s var(--ease-out);
+  will-change: transform;
+}
+
+/* luz que sigue al mouse */
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(254, 254, 254, 0.55), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.badge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(254, 254, 254, 0.85);
+  transform: translateZ(30px);
+}
+
+.index {
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: rgba(254, 254, 254, 0.75);
+  transform: translateZ(50px) translateY(12px);
+  opacity: 0;
+  transition: opacity 0.4s, transform 0.6s var(--ease-out);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
+}
+
+.summary {
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--topo-2);
+  max-width: 52ch;
+}
+
+.card:hover .media,
+.card:focus-visible .media {
+  background-size: 240px auto;
+  border-radius: 22px;
+}
+.card:hover .glow,
+.card:hover .index {
+  opacity: 1;
+}
+.card:hover .index {
+  transform: translateZ(50px) translateY(0);
+}
+.card:hover .arrow,
+.card:focus-visible .arrow {
+  background: var(--naranja);
+  color: var(--blanco);
+  transform: rotate(-45deg);
+}

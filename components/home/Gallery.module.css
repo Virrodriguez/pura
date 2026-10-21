@@ -1,0 +1,65 @@
+.gallery {
+  display: grid;
+  gap: clamp(10px, 1.2vw, 16px);
+  padding-bottom: var(--section);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 1 / 0.9;
+  will-change: clip-path;
+}
+
+.photoTile {
+  background: var(--celeste);
+}
+
+.photo {
+  object-fit: cover;
+  scale: 1.18;
+  will-change: transform;
+}
+
+.pattern {
+  --px: 0;
+  --py: 0;
+  background-position: calc(var(--px) * 1px) calc(var(--py) * 1px);
+}
+
+.wide {
+  aspect-ratio: 16 / 7.4;
+  display: flex;
+  align-items: center;
+}
+
+.marquee {
+  display: flex;
+  white-space: nowrap;
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: var(--blanco);
+  will-change: transform;
+}
+.marquee span {
+  padding-right: 0.3em;
+}
+
+@media (max-width: 860px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .wide {
+    aspect-ratio: 4 / 3;
+  }
+}

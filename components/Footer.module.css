@@ -1,0 +1,80 @@
+.footer {
+  padding-block: var(--section) 0;
+  overflow: hidden;
+}
+
+.big {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 32px;
+}
+
+.big li {
+  overflow: hidden;
+}
+
+.big a {
+  display: inline-block;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* subrayado que barre de izquierda a derecha */
+.big a span {
+  background: linear-gradient(var(--naranja), var(--naranja)) 0 100% / 0% 3px no-repeat;
+  transition: background-size 0.6s var(--ease-out), color 0.3s;
+  padding-bottom: 2px;
+}
+.big a:hover span,
+.big a:focus-visible span {
+  background-size: 100% 3px;
+  color: var(--naranja);
+}
+
+.row {
+  margin-top: clamp(40px, 6vw, 80px);
+  padding-top: 20px;
+  border-top: 1px solid var(--topo-12);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  font-size: var(--fs-sm);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-weight: 600;
+}
+.nav a:hover {
+  color: var(--naranja);
+}
+
+.legal {
+  color: var(--topo-60);
+}
+
+.giantWrap {
+  margin-top: clamp(32px, 5vw, 64px);
+  margin-bottom: -2.5vw;
+}
+
+.giant {
+  width: 100%;
+  height: auto;
+  color: var(--amarillo);
+}
+
+@media (max-width: 700px) {
+  .big {
+    flex-direction: column;
+  }
+}

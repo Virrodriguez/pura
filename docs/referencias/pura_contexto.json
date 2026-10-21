@@ -1,0 +1,506 @@
+{
+  "meta": {
+    "proyecto": "PURA – Protección Solar Natural",
+    "autora": "Virginia Rodriguez",
+    "fecha_exportacion": "2026-10-20",
+    "descripcion": "Exportación de la conversación y de todo el contexto compartido (5 documentos PDF) sobre la identidad visual y el desarrollo de packaging de un protector solar en barra.",
+    "cantidad_documentos": 5
+  },
+  "conversacion": [
+    {
+      "orden": 1,
+      "rol": "usuario",
+      "fecha": "2026-10-20T16:08:00-03:00",
+      "adjuntos": [
+        "doc_1_identidad_visual_pura.pdf",
+        "doc_2_acerca_del_formato_elegido.pdf",
+        "doc_3_acerca_del_envase.pdf",
+        "doc_4_analisis_de_producto_y_mercado.pdf",
+        "doc_5_analisis_competitivo.pdf"
+      ],
+      "mensaje": "Pasame en un json toda nuestra conversacion y contexto que te he pasado"
+    },
+    {
+      "orden": 2,
+      "rol": "asistente",
+      "mensaje": "Generación de este archivo JSON con la conversación y el contenido estructurado de los documentos."
+    }
+  ],
+  "documentos": [
+    {
+      "id": 1,
+      "titulo": "Identidad visual PURA",
+      "firma": "visual identity by virginia rodriguez",
+      "marca": {
+        "nombre": "pura",
+        "bajada_logo": "PROTECCIÓN NATURAL",
+        "nombre_extendido": "PURA Protección Solar Natural",
+        "descripcion": "Marca de fotoprotección facial contemporánea que combina ingredientes de origen natural, conocimiento científico y diseño para crear productos eficaces, seguros y agradables sobre la piel. Propone una mirada actual sobre la cosmética natural, haciendo notar su aspecto profesional, confiable y de alta performance."
+      },
+      "logotipo": {
+        "composicion": "Logotipo 'pura' en minúsculas + isotipo en forma de arco/sol (media luna) sobre la palabra + bajada 'PROTECCIÓN NATURAL'.",
+        "zona_de_seguridad": "Sirve para proteger el logotipo de la convivencia con otros elementos gráficos que puedan empastar su lectura y quitarle pregnancia.",
+        "variables_de_uso": ["versión horizontal", "versión vertical", "isologo"],
+        "aplicaciones_mostradas": [
+          "Isotipo naranja + logotipo negro topo sobre trama amarilla",
+          "Isotipo amarillo + logotipo blanco sobre trama naranja",
+          "Isotipo naranja + logotipo negro topo sobre trama celeste"
+        ]
+      },
+      "paleta_cromatica": {
+        "institucional": [
+          {"rol": "Primario", "nombre": "Amarillo", "hex": "#FFE88B", "descripcion": "Color principal y más reconocible de la marca. Representa luz, sol, frescura y energía."},
+          {"rol": "Secundario", "nombre": "Blanco", "hex": "#FEFEFE", "descripcion": "Color base de la identidad. Aporta limpieza, aire, simpleza; científica pero beauty."},
+          {"rol": "Secundario", "nombre": "Negro topo", "hex": "#251E18", "descripcion": "Aporta contraste y legibilidad. Da una sensación más suave y natural que el negro absoluto."}
+        ],
+        "lineas_de_producto": [
+          {"linea": "CLASSIC", "nombre_color": "Amarillo Pura", "hex": "#FFE88B", "descripcion": "Protección solar clásica para todo tipo de pieles. Aporta luminosidad y no deja residuos."},
+          {"linea": "SENSITIVE", "nombre_color": "Celeste", "hex": "#C2E1F3", "descripcion": "Para pieles sensibles. Asociado a calma, suavidad y cuidado de pieles sensibles."},
+          {"linea": "CON COLOR", "nombre_color": "Naranja", "hex": "#EF793F", "descripcion": "Protección con color. Aporta color y luminosidad para una apariencia natural y saludable."}
+        ]
+      },
+      "tipografia": {
+        "familia": "Gilroy Bold",
+        "descripcion": "Se caracteriza por sus formas geométricas y trazos contundentes, que aportan legibilidad, equilibrio visual y consistencia a la identidad de PURA.",
+        "muestra": "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Ññ Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0 1 2 3 4 5 6 7 8 9"
+      },
+      "tramas_patrones": {
+        "descripcion": "Patrón repetitivo de formas de arco/media luna (derivadas del isotipo) en un tono más saturado sobre el color de fondo.",
+        "variantes": ["Amarillo", "Naranja", "Celeste"]
+      },
+      "packaging_mockup": {
+        "tipo": "Caja de cartón blanca (envase secundario)",
+        "frente": {
+          "logo": "pura PROTECCIÓN NATURAL",
+          "producto": "SUNSTICK",
+          "descripcion": "Barra de protector solar natural con componentes minerales",
+          "nombre_en": "Sun stick",
+          "contenido_neto": "80ml 2.7 ft.oz"
+        }
+      },
+      "imagenes_de_campaña": ["Retrato de mujer sonriente sobre fondo celeste claro", "Mujer con pecas aplicando producto bajo los ojos sobre fondo blanco"],
+      "cierre": "muchas gracias"
+    },
+    {
+      "id": 2,
+      "titulo": "Acerca del formato elegido",
+      "protector_solar_en_barra": {
+        "definicion": "A diferencia de los protectores en crema, los solares en barra utilizan una matriz sólida compuesta principalmente por filtros solares, ceras y emolientes. Esta formulación permite una aplicación directa, limpia y portable, convirtiendo al envase en una parte fundamental de la experiencia de uso.",
+        "por_que_en_barra": [
+          "La fórmula sólida permite crear un producto compacto, portable y de aplicación directa.",
+          "No se derrama, se puede reaplicar sin volcar producto en las manos y resulta especialmente útil en zonas puntuales como rostro, nariz, orejas o contorno de ojos.",
+          "Contra: puede resultar más difícil saber si colocamos suficiente cantidad, por lo que hay que hacer varias pasadas para conseguir una cobertura uniforme."
+        ],
+        "propuesta_de_valor_resumen": "Un protector solar en barra compacto, portable y de aplicación limpia, diseñado para acompañarte durante todo el día y hacer de la reaplicación un hábito simple y cotidiano."
+      },
+      "beneficios_de_la_barra": [
+        {"beneficio": "Más portable", "detalle": "Es compacto y fácil de llevar."},
+        {"beneficio": "No se derrama", "detalle": "Al ser sólido, reduce el riesgo de pérdidas dentro del bolso."},
+        {"beneficio": "Aplicación directa", "detalle": "Se pasa sobre la piel sin tener que volcar producto en la mano."},
+        {"beneficio": "Más limpio", "detalle": "Ensucia menos."},
+        {"beneficio": "Más preciso", "detalle": "Funciona bien en zonas puntuales."},
+        {"beneficio": "Mejor para movimiento/viaje", "detalle": "Suele ser más cómodo para deporte, playa, caminatas o traslados."},
+        {"beneficio": "Puede favorecer el hábito", "detalle": "Por ser un objeto pequeño y accesible, es más fácil tenerlo siempre cerca y recordar reaplicarlo."}
+      ],
+      "segmentos_de_clientes": [
+        {"n": 1, "segmento": "Jóvenes y adultos con rutinas activas", "detalle": "Personas que pasan gran parte del día fuera de casa y necesitan una protección solar fácil de transportar y reaplicar."},
+        {"n": 2, "segmento": "Personas que practican actividades al aire libre", "detalle": "Usuarios que realizan deporte, caminatas, viajes, playa u otras actividades y valoran un formato rápido, limpio y práctico."},
+        {"n": 3, "segmento": "Usuarios de skincare y cuidado personal", "detalle": "Personas que incorporan la protección solar a su rutina diaria y buscan un producto compacto, cómodo y fácil de aplicar durante el día."},
+        {"n": 4, "segmento": "Familias", "detalle": "Adultos que buscan una forma simple y rápida de aplicar protector a niños o distintos integrantes de la familia."}
+      ],
+      "propuesta_de_valor": [
+        "Protector solar en barra portable, práctico y limpio, pensado para usar y reaplicar en cualquier momento del día.",
+        "Un formato compacto que se integra a la rutina y facilita incorporar la protección solar como hábito cotidiano."
+      ],
+      "necesidades_del_usuario": [
+        {"necesidad": "Portabilidad", "detalle": "Poder llevarlo siempre encima."},
+        {"necesidad": "Practicidad", "detalle": "Abrir, aplicar y guardar rápidamente."},
+        {"necesidad": "Limpieza", "detalle": "Reducir el contacto del producto con las manos."},
+        {"necesidad": "Recordación", "detalle": "Que el propio objeto incentive a usarlo y reaplicarlo."}
+      ],
+      "usos_y_zonas_de_aplicacion": {
+        "zonas": [
+          {"zona": "Rostro", "detalle": "Frente, mejillas, mentón, nariz."},
+          {"zona": "Zonas de precisión", "detalle": "Contorno de ojos, orejas, línea del cabello, cuello."},
+          {"zona": "Manos", "detalle": "El dorso de las manos es una zona muy expuesta y que pierde protección con los lavados."}
+        ],
+        "usos": [
+          {"uso": "Deporte y actividades al aire libre", "detalle": "Nariz, pómulos, rostro, orejas; especialmente por su portabilidad y aplicación directa."},
+          {"uso": "Reaplicación localizada", "detalle": "Resulta práctico para reforzar zonas que reciben mucha radiación durante el día."}
+        ],
+        "modo_de_aplicacion": [
+          "1. Realizar cuatro pasadas de ida y vuelta sobre la misma zona.",
+          "2. Superponer las pasadas para no dejar espacios sin cubrir.",
+          "3. Distribuir luego el producto para obtener una capa uniforme.",
+          "4. Reaplicar al menos cada 2 horas cuando se está al aire libre y después de nadar o transpirar."
+        ]
+      },
+      "superficie_y_forma_de_la_barra": [
+        {"forma": "Circular", "detalle": "Más parecida a un bálsamo. Precisa pero cubre menos superficie."},
+        {"forma": "Ovalada", "detalle": "Se adapta bien al rostro y aumenta el área de aplicación."},
+        {"forma": "Rectangular / ancha", "detalle": "Permite cubrir superficies mayores con menos pasadas."}
+      ],
+      "mecanismos": {
+        "opciones": [
+          {"tipo": "Twist-up", "detalle": "Base giratoria que eleva y retrae el producto."},
+          {"tipo": "Push-up", "detalle": "El producto asciende mediante presión desde la base."},
+          {"tipo": "Click / dosificado", "detalle": "Mecanismos de avance progresivo."}
+        ],
+        "criterios_de_evaluacion": ["Mecanismo específico", "Temperaturas", "Higiene"],
+        "nota": "En el documento las tres opciones se repiten bajo cada criterio (aparentemente como plantilla a completar)."
+      },
+      "propiedades_de_la_barra": [
+        {"propiedad": "Solidez", "detalle": "El producto debe mantener su forma dentro del envase."},
+        {"propiedad": "Deslizamiento", "detalle": "Recorrer la piel sin generar demasiado arrastre."},
+        {"propiedad": "Transferencia", "detalle": "Depositar una cantidad suficiente de fórmula sobre la piel."},
+        {"propiedad": "Uniformidad", "detalle": "Permitir una cobertura continua."},
+        {"propiedad": "Estabilidad", "detalle": "No deformarse fácilmente durante almacenamiento y transporte."},
+        {"propiedad": "Confort", "detalle": "No resultar excesivamente graso, pegajoso o pesado."}
+      ],
+      "pregunta_clave_dosis": {
+        "titulo": "¿Cuánto debo aplicar?",
+        "planteo": "En una crema el usuario puede visualizar cuánto producto coloca en la mano. En una barra no existe una dosis evidente.",
+        "pregunta_de_diseño": "¿Puede el propio packaging ayudar al usuario a entender cuánto producto debe aplicar?"
+      },
+      "publico_objetivo": {
+        "perfil": "Mujeres de 20 a 45 años",
+        "descripcion": "Mujeres de 20 a 45 años con rutinas activas y urbanas, interesadas en el cuidado de su piel y que buscan incorporar la fotoprotección a su día de manera simple, estética y práctica.",
+        "valoran": "La seguridad del producto, pero también su portabilidad, experiencia de uso y capacidad de integrarse naturalmente a su rutina de skincare.",
+        "nivel_de_conocimiento": "No necesariamente son expertas en skincare, pero entienden la importancia de proteger la piel y valoran productos que hagan más fácil sostener ese cuidado en el tiempo.",
+        "estilo_de_vida": ["urbano", "activo", "cotidiano", "móvil"]
+      },
+      "referencias_visuales": ["Stick SPF 50 amarillo (SPFriend)", "Stick blanco twist-up (City & Beach)", "Stick circular violeta (Kream)", "Stick ovalado naranja (Anua Glow Stick SPF 50)", "Stick rectangular naranja (SPF 50)"]
+    },
+    {
+      "id": 3,
+      "titulo": "Acerca del envase",
+      "secciones": [
+        {
+          "n": 1,
+          "titulo": "Marco legal",
+          "descripcion": "Requisitos obligatorios que debe cumplir el envase según ANMAT y normativa cosmética de fotoprotección.",
+          "informacion_obligatoria": ["Nombre del producto y tipo", "Marca", "FPS (destacado)", "UVA + UVB / Amplio espectro", "Categoría de protección", "Contenido neto", "Lote", "Fecha de vencimiento", "País de origen", "Datos del elaborador / importador", "Contacto de atención al consumidor", "Modo de uso", "Advertencias y precauciones", "Ingredientes (INCI)"],
+          "nota": "Si no existe envase secundario, toda la información obligatoria debe estar en el envase primario."
+        },
+        {
+          "n": 2,
+          "titulo": "Claims y prohibiciones",
+          "descripcion": "Qué puede comunicar el envase y qué no puede decir según la normativa.",
+          "puede_decir": ["Amplio espectro (UVA + UVB)", "Resistente al agua*", "Piel sensible", "Dermatológicamente testeado*", "Mineral / Físico / Químico", "Con color", "Hipoalergénico*"],
+          "no_puede_decir": ["Protección total", "100% protección", "Bloqueo total del sol", "No necesita reaplicación", "Resistente al agua (sin estudios que lo respalden)"],
+          "aclaracion": "* Claims permitidos solo si cuentan con ensayos que lo respalden."
+        },
+        {
+          "n": 3,
+          "titulo": "Arquitectura de información",
+          "descripcion": "Cómo se distribuye la información en el envase y qué debe jerarquizarse.",
+          "frente": ["Marca", "Nombre del producto", "FPS (destacado)", "UVA + UVB", "Tipo de piel / Zona de uso", "Característica diferencial", "Contenido neto"],
+          "dorso": ["Qué hace", "Modo de uso", "Cantidad necesaria", "Frecuencia de reaplicación", "Advertencias", "Ingredientes (INCI)", "Datos del fabricante", "Lote", "Vencimiento", "Contacto"],
+          "laterales": ["Información complementaria", "Íconos", "Certificaciones", "Características adicionales"],
+          "base_tapa": ["Lote / vencimiento (si el frente y dorso no lo permiten)", "Íconos de reciclaje"],
+          "nota": "El usuario debe entender QUÉ ES, CUÁNTO PROTEGE y PARA QUIÉN ES en 3 segundos."
+        },
+        {
+          "n": 4,
+          "titulo": "Formatos de packaging",
+          "descripcion": "Tipos de envases disponibles en la categoría.",
+          "formatos": [
+            {"formato": "Tubo flexible", "detalle": "Liviano, económico, fácil de transportar. Puede quedar producto dentro."},
+            {"formato": "Botella", "detalle": "Gran capacidad, estable, múltiples sistemas de salida (flip-top, rosca, pump)."},
+            {"formato": "Airless / Pump", "detalle": "Dosificación controlada, más higiénico, menos piezas, mayor complejidad."},
+            {"formato": "Spray / Splash", "detalle": "Aplicación rápida y amplia, práctico, menos control de cantidad aplicada."},
+            {"formato": "Aerosol", "detalle": "Cobertura rápida, uso corporal. Requiere advertencias específicas."},
+            {"formato": "Stick / Barra", "detalle": "Portable, directo, localizado. Menos evidente la cantidad aplicada."},
+            {"formato": "Sachet / Monodosis", "detalle": "Control de porción, pequeño, uso único, genera residuos."}
+          ]
+        },
+        {
+          "n": 5,
+          "titulo": "Anatomía del envase",
+          "descripcion": "Partes que componen el envase y su función.",
+          "partes": [
+            {"parte": "Tapa", "funcion": "Protege el producto de contaminantes y daños."},
+            {"parte": "Cuerpo del envase", "funcion": "Contiene y sostiene el producto de forma segura."},
+            {"parte": "Mecanismo / sistema", "funcion": "Permite elevar y retraer el producto (twist-up, push-up, etc.)."},
+            {"parte": "Base", "funcion": "Da estabilidad y soporte. Puede incluir sistema de giro."}
+          ],
+          "nota": "Analizar qué piezas están en contacto directo con el producto y cuáles pueden perderse."
+        },
+        {
+          "n": 6,
+          "titulo": "Funcionalidad del envase",
+          "descripcion": "Cómo funciona el envase en la práctica y su usabilidad.",
+          "aspectos": ["Apertura y cierre", "Dosificación / salida", "Control de cantidad", "Posibilidad de uso con una mano", "Protección del contenido", "Evita derrames / fugas", "Limpieza del pico o superficie", "Reaplicación rápida", "¿Se ensucia?", "¿Queda producto atrapado?", "¿Se puede volver a cerrar fácilmente?"],
+          "nota": "Un envase funcional facilita el uso frecuente y correcto del protector solar."
+        },
+        {
+          "n": 7,
+          "titulo": "Ergonomía",
+          "descripcion": "Cómo se adapta el envase al cuerpo, al gesto y al contexto.",
+          "aspectos": ["Tamaño (entra en la mano)", "Peso (liviano / portable)", "Agarre (textura / forma)", "Forma (cilíndrica, oval, rectangular, etc.)", "Estabilidad (se mantiene parado)", "Apertura (fuerza necesaria)", "Uso con manos mojadas o con crema", "Aplicación (precisión vs cobertura)", "Comodidad de uso diario", "Percepción al tacto"],
+          "nota": "La ergonomía impacta directamente en la adherencia del usuario y en la reaplicación."
+        },
+        {
+          "n": 8,
+          "titulo": "Relación fórmula + envase",
+          "descripcion": "El envase debe proteger la fórmula y ser compatible con ella.",
+          "factores_a_analizar": ["Temperatura (calor / frío)", "Luz (UV / solar)", "Oxígeno (oxidación)", "Humedad", "Evaporación", "Contaminación externa", "Viscosidad / estado físico", "Estabilidad de la fórmula"],
+          "preguntas_clave": ["¿Puede derretirse?", "¿Puede separarse?", "¿Puede secarse?", "¿Necesita protección especial (luz / aire)?", "¿El material del envase es compatible?"],
+          "nota": "En barras: el producto debe mantenerse sólido en el envase, pero deslizarse correctamente sobre la piel."
+        },
+        {
+          "n": 9,
+          "titulo": "Materiales",
+          "descripcion": "Materiales más utilizados en envases de protectores solares.",
+          "materiales": [
+            {"material": "Plásticos (PE, PP, PET, entre otros)", "detalle": "Livianos, moldeables, resistentes, económicos. Varían en barrera, opacidad y reciclabilidad."},
+            {"material": "Aluminio", "detalle": "Presente en aerosoles. Buena barrera, resistente, reciclable."},
+            {"material": "Cartón", "detalle": "Principalmente como packaging secundario. Permite información legal, branding, protección y exhibición."}
+          ],
+          "nota": "Elegir el material correcto es clave para proteger el producto y comunicar marca."
+        },
+        {
+          "n": 10,
+          "titulo": "Vida útil, almacenamiento y transporte",
+          "descripcion": "Cómo se comporta el producto y el envase en diferentes condiciones.",
+          "almacenamiento": "Calor, luz solar, humedad, baño, playa.",
+          "transporte_y_uso": "Cartera, mochila, auto, viaje, deporte. Golpes, presión, aperturas accidentales.",
+          "riesgos": "Derrames, deformaciones, fugas, ingreso de arena o agua, contaminación del producto.",
+          "nota": "El envase debe proteger el producto y resistir el uso real del usuario."
+        },
+        {
+          "n": 11,
+          "titulo": "Sostenibilidad",
+          "descripcion": "Impacto ambiental del sistema de envase durante todo su ciclo de vida.",
+          "ejes": [
+            {"eje": "Materiales", "detalle": "Cantidad de material, uso de reciclado, fuentes renovables."},
+            {"eje": "Diseño", "detalle": "Menos piezas, monomaterial, facilidad de desarme."},
+            {"eje": "Uso", "detalle": "Refill, reutilización, durabilidad, menor peso del envase."},
+            {"eje": "Fin de vida", "detalle": "Reciclabilidad real, posibilidad de reciclaje en Argentina."},
+            {"eje": "Envase secundario", "detalle": "¿Es necesario? ¿Puede eliminarse sin perder información clave?"}
+          ],
+          "nota": "Un envase más simple y reciclable reduce impacto ambiental y mejora la percepción de marca."
+        },
+        {
+          "n": 12,
+          "titulo": "Benchmark / códigos de categoría",
+          "descripcion": "Cómo se resuelve actualmente el packaging en el mercado y qué códigos visuales predominan.",
+          "ejes": [
+            {"eje": "Marcas referentes", "detalle": "Analizar competidores directos e indirectos en distintos formatos."},
+            {"eje": "Códigos visuales", "detalle": "Colores, tipografías, íconos, estilo gráfico, tono de comunicación."},
+            {"eje": "Jerarquía", "detalle": "¿Qué priorizan? FPS, marca, claims, tipo de piel."},
+            {"eje": "Públicos", "detalle": "Infantil, rostro, cuerpo, deportivo, piel sensible, uso diario."},
+            {"eje": "Oportunidades", "detalle": "¿Qué problemas no resuelve el mercado? ¿Qué se puede mejorar?"}
+          ],
+          "nota": "Entender la categoría permite diferenciarse y aportar valor real para el usuario."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Análisis de producto & mercado",
+      "protectores_solares": {
+        "definicion": "El protector solar o fotoprotector es un producto diseñado para reducir la cantidad de radiación ultravioleta que alcanza y daña la piel. Su fórmula contiene filtros UV activos, acompañados por otros componentes que permiten darle textura, estabilidad, resistencia y una forma de aplicación determinada.",
+        "presentaciones": ["cremas", "lociones", "geles", "sprays", "barras", "aceites", "otras formulaciones"],
+        "funciones": {
+          "principal": "Proteger la piel frente a los efectos perjudiciales de la radiación ultravioleta.",
+          "previene": ["Quemaduras solares", "Envejecimiento prematuro de la piel", "Manchas y otros signos de fotoenvejecimiento", "Disminuye el riesgo de cáncer de piel"]
+        },
+        "info_de_valor": "El protector solar no bloquea completamente el sol, sino que reduce la cantidad de radiación UV que llega a la piel y debe complementarse con otras medidas de protección."
+      },
+      "origen_y_evolucion": {
+        "resumen": "Los antecedentes modernos del protector solar comercial aparecen durante la década de 1930, cuando crecía tanto el interés por el bronceado como el conocimiento sobre los efectos de la radiación UV. En décadas siguientes aparecieron nuevos filtros y formulaciones; el producto evolucionó desde evitar quemaduras hacia sistemas de amplio espectro (UVA + UVB).",
+        "linea_de_tiempo": [
+          {"periodo": "3100 a.C.", "hito": "Primeras formas de protección", "detalle": "Los antiguos egipcios utilizaban salvado de arroz, jazmín y lupino para evitar el bronceado y mantener la piel clara. Más tarde, los griegos usaban aceite de oliva para proteger la piel expuesta al sol."},
+          {"periodo": "1801–1891", "hito": "Se descubre el efecto de la radiación UV", "detalle": "En 1801 Johann Wilhelm Ritter descubre la radiación ultravioleta. Durante el siglo XIX se demuestra que puede provocar enrojecimiento y quemaduras. En 1891 el Dr. Hammer recomienda por primera vez un protector químico con quinina en una pomada."},
+          {"periodo": "1935–1946", "hito": "Nace el protector solar moderno", "detalle": "En 1935 Eugène Schueller (fundador de L'Oréal) desarrolla Ambre Solaire, un aceite bronceador capaz de filtrar parte de la radiación UV. En 1946 el químico suizo Franz Greiter comercializa Gletscher Crème tras haberse quemado escalando el Piz Buin."},
+          {"periodo": "1962", "hito": "Aparece el FPS", "detalle": "Greiter introduce el concepto de SPF/FPS (Factor de Protección Solar), una forma estandarizada de medir cuánto protege un producto frente a la radiación que produce quemaduras."}
+        ],
+        "secuencia": "Protección natural → Descubrimiento de los rayos UV → Primeras fórmulas → Protector moderno → FPS"
+      },
+      "composicion": {
+        "grupos": [
+          {"n": "01", "nombre": "Filtros UV (componente activo)", "detalle": "Responsables de proteger la piel de la radiación UV. Determinan gran parte de la protección UVA/UVB.", "tipos": {"minerales": ["óxido de zinc", "dióxido de titanio"], "organicos_quimicos": ["avobenzona", "octocrileno", "octisalato", "bemotrizinol"], "combinacion": "O una combinación de ambos."}},
+          {"n": "02", "nombre": "Base o vehículo (lo que le da forma al producto)", "detalle": "Medio en el que se incorporan los filtros; determina cómo se siente, se aplica y se presenta. Por eso un mismo principio puede ser crema, gel, spray o barra.", "componentes": ["Agua", "Aceites", "Ceras", "Alcoholes", "Siliconas", "Emulsionantes"], "nota": "La FDA distingue entre ingredientes activos (protegen de los UV) e inactivos (agua, aceites) que permiten formular el producto."},
+          {"n": "03", "nombre": "Ingredientes complementarios", "detalle": "Mejoran conservación, textura o experiencia de uso.", "ejemplos": [
+            {"ingrediente": "Humectantes", "funcion": "ayudan a mantener hidratación"},
+            {"ingrediente": "Antioxidantes", "funcion": "ej. vitamina E"},
+            {"ingrediente": "Conservantes", "funcion": "evitan contaminación microbiológica"},
+            {"ingrediente": "Fragancias", "funcion": "aportan aroma"},
+            {"ingrediente": "Pigmentos", "funcion": "en protectores con color"},
+            {"ingrediente": "Agentes filmógenos", "funcion": "ayudan a que el producto permanezca sobre la piel y resista mejor el agua"}
+          ]}
+        ],
+        "glosario": {"FDA": "Food and Drug Administration: agencia del gobierno de EE.UU. encargada de proteger la salud pública."}
+      },
+      "tipos_de_formulas": [
+        {"tipo": "Emulsiones", "detalle": "Mezclan una fase acuosa y una oleosa. Son las más tradicionales; aplicación fácil y cubren grandes superficies.", "productos": ["cremas", "lociones", "leches solares"]},
+        {"tipo": "Fórmulas acuosas / gelificadas", "detalle": "Mayor proporción de agua y agentes gelificantes. Sensaciones más livianas y de rápida absorción.", "productos": ["geles", "fluidos", "sérums solares"]},
+        {"tipo": "Fórmulas hidroalcohólicas", "detalle": "Combinan agua y alcohol. Favorecen el secado rápido.", "productos": ["sprays", "brumas", "productos ultralivianos"]},
+        {"tipo": "Fórmulas anhidras", "detalle": "Poca o nada de agua; principalmente aceites, ceras y agentes sólidos.", "productos": ["barras", "bálsamos", "aceites solares"]}
+      ],
+      "tipos_segun_formato": [
+        {"formato": "Crema", "caracteristicas": "Densa, hidratante, fácil de distribuir", "uso_habitual": "Rostro y piel seca"},
+        {"formato": "Loción/Leche", "caracteristicas": "Más fluida que la crema", "uso_habitual": "Cuerpo y grandes superficies"},
+        {"formato": "Gel", "caracteristicas": "Liviano, de rápida absorción", "uso_habitual": "Piel grasa o zonas con vello"},
+        {"formato": "Spray", "caracteristicas": "Aplicación rápida y amplia", "uso_habitual": "Cuerpo, deporte y reaplicación"},
+        {"formato": "Bruma", "caracteristicas": "Muy ligera y pulverizada", "uso_habitual": "Rostro y reaplicación"},
+        {"formato": "Barra/Stick", "caracteristicas": "Sólida, portable y aplicación directa", "uso_habitual": "Rostro, nariz, labios y zonas específicas"},
+        {"formato": "Aceite", "caracteristicas": "Textura oleosa y extensible", "uso_habitual": "Cuerpo"},
+        {"formato": "Bálsamo", "caracteristicas": "Denso y concentrado", "uso_habitual": "Zonas localizadas"},
+        {"formato": "Polvo", "caracteristicas": "Aplicación seca mediante brocha", "uso_habitual": "Principalmente rostro/reaplicación"}
+      ],
+      "nota_formatos": "La Academia Americana de Dermatología reconoce como presentaciones habituales lociones, cremas, geles, ungüentos, sticks y sprays, y señala que cada formato se adapta mejor a diferentes zonas y tipos de piel.",
+      "tipos_segun_filtro": [
+        {"tipo": "Mineral / Físico", "filtros": "Óxido de zinc + dióxido de titanio", "funcion": "Forman una película sobre la piel que principalmente absorbe radiación UV y también puede reflejar parte de ella.", "ventajas": ["Adecuados para piel sensible", "Protección UVA + UVB", "Suelen asociarse a fórmulas dermatológicas"], "desventajas": ["Pueden dejar residuo blanco", "Algunas formulaciones resultan más densas"]},
+        {"tipo": "Orgánico / Químico", "filtros": "Avobenzona, octocrileno, octisalato, bemotrizinol", "funcion": "Moléculas orgánicas que absorben radiación UV y la transforman en otra forma de energía.", "ventajas": ["Texturas generalmente más livianas", "Mayor transparencia sobre la piel", "Fácil incorporación en fluidos, geles y sprays"], "desventajas": ["Algunos filtros pueden resultar irritantes para determinadas pieles", "Normalmente se combinan varios filtros para lograr amplio espectro"]},
+        {"tipo": "Híbrido", "filtros": "Minerales + orgánicos", "funcion": "Aprovecha ventajas de ambos sistemas: amplio espectro, buena cosmeticidad, estabilidad y mejor experiencia de aplicación."}
+      ],
+      "nota_filtros": "La clasificación mineral/químico/híbrido se basa en qué ingredientes activos contiene la formulación.",
+      "tipos_segun_proteccion": {
+        "fps": {
+          "niveles": ["FPS 15", "FPS 30", "FPS 50", "FPS 50+"],
+          "definicion": "El FPS indica principalmente el nivel de protección frente a la radiación UVB relacionada con la quemadura solar. No significa que un FPS 50 permita permanecer 50 veces más tiempo al sol.",
+          "porcentajes": [
+            {"fps": "0", "proteccion": "Sin protección"},
+            {"fps": "15", "proteccion": "93%"},
+            {"fps": "30", "proteccion": "95%"},
+            {"fps": "50", "proteccion": "98%"}
+          ]
+        },
+        "segun_espectro": [
+          {"tipo": "UVB", "detalle": "Relacionado principalmente con quemaduras solares; afecta la capa superficial, causa rojeces, estimula el bronceado y aumenta el riesgo de cáncer de piel."},
+          {"tipo": "UVA", "detalle": "Penetra más profundamente; no quema de forma inmediata pero causa fotoenvejecimiento, arrugas, manchas y daño acumulativo."},
+          {"tipo": "Amplio espectro / Broad Spectrum", "detalle": "Protección frente a UVA + UVB."}
+        ],
+        "segun_resistencia_al_agua": ["No resistente al agua", "Resistente al agua", "Resistencia especificada por determinado tiempo"]
+      },
+      "como_actua_la_radiacion": {
+        "secuencia": "SOL → UVA → UVB → PIEL",
+        "radiaciones": [
+          {"tipo": "UVB", "efectos": ["Eritema solar o quemaduras", "Bronceado", "Inmunosupresión cutánea", "Cáncer de piel"], "alcance": "Epidermis"},
+          {"tipo": "UVA", "efectos": ["Fotoenvejecimiento", "Manchas y arrugas", "Alergias solares", "Cáncer de piel"], "alcance": "Dermis"},
+          {"tipo": "Luz azul", "efectos": ["Envejecimiento prematuro", "Daño oxidativo", "Manchas"]},
+          {"tipo": "IR-A", "efectos": ["Sensación de calor", "Pérdida de elasticidad y firmeza"], "alcance": "Hipodermis"}
+        ]
+      },
+      "como_se_usa": {
+        "cantidad_necesaria": "Aplicar una cantidad generosa y uniforme. En un adulto, aprox. 30 ml para todo el cuerpo y alrededor de 1 cucharadita para rostro y cuello. Usar menos disminuye la protección real.",
+        "regla_de_los_2_dedos": {"rostro": "2 dedos", "cada_brazo": "2 dedos", "torso": "4 dedos", "espalda": "4 dedos", "cada_pierna": "4 dedos (2 en muslo + 2 en pantorrilla)"},
+        "zonas_de_aplicacion": "Toda la piel expuesta. Suelen olvidarse orejas, nariz, cuello, manos, empeines, línea del cabello y cuero cabelludo expuesto. Para labios se recomienda un producto específico con FPS.",
+        "reaplicacion": "La protección disminuye con el tiempo, el agua, la transpiración y el roce. Reaplicar al menos cada 2 horas y después de nadar, transpirar intensamente o secarse con toalla.",
+        "uso_cotidiano_vs_exposicion_prolongada": "La radiación UV está presente todo el año, incluso nublado. En el uso cotidiano se aplica en zonas expuestas; en playa, pileta, deporte o exposiciones prolongadas hay que cubrir más superficie y extremar la reaplicación."
+      },
+      "quien_usa_protector_solar": {
+        "descripcion": "Personas de todas las edades y todos los tipos de piel expuestas a radiación UV; su uso varía según estilo de vida y necesidad.",
+        "usuarios": ["Niños", "Jóvenes", "Adultos", "Deportistas", "Usuarios de skincare", "Piel sensible", "Turistas", "Trabajadores expuestos al sol"],
+        "nota": "Para bebés menores de 6 meses existen recomendaciones específicas; no se incluyen en la categoría general sin aclaración."
+      },
+      "donde": {
+        "contextos": ["Ciudad", "Playa", "Pileta", "Deporte", "Viaje", "Trabajo al aire libre", "Actividades cotidianas"],
+        "nota": "La exposición UV ocurre cada vez que estamos al aire libre; el producto pasó de asociarse solo a vacaciones a incorporarse a la rutina diaria."
+      },
+      "frecuencia_de_uso": {
+        "diariamente": "Zonas expuestas",
+        "cada_2_horas": "Durante exposición",
+        "reaplicar": "Tras agua, sudor, roce"
+      },
+      "problemas_actuales_de_uso": [
+        "Ensucia las manos",
+        "Sensación pegajosa",
+        "Difícil de transportar",
+        "Envases que se abren o pierden",
+        "Productos grandes para llevar",
+        "Olvidarse de reaplicar",
+        "Dificultad para aplicar en algunas zonas",
+        "No saber cuánto producto aplicar",
+        "Confusión entre FPS, UVA, UVB, etc."
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Análisis competitivo: competencia directa (sticks solares)",
+      "criterios": {
+        "identidad_visual": "¿Mascota? ¿Logo dominante? ¿Consistencia?",
+        "estrategia_tipografica": "¿Fuentes similares? ¿Jerarquías diferentes?",
+        "uso_del_color": "¿Qué paletas usan? ¿Cómo diferencian variantes?",
+        "solucion_material": "¿Qué formatos? ¿Qué experiencia ofrecen?",
+        "comunicacion": "¿Qué prometen? ¿A quién le hablan? ¿Cómo se posicionan?"
+      },
+      "competidores": [
+        {
+          "marca": "NIVEA SUN",
+          "producto": "Silky UV Stick SPF 50+",
+          "identidad_visual": "Stick facial para zonas delicadas del rostro, de acabado invisible, sin perfume, resistente al agua y al sudor y pensado para reaplicaciones. Mantiene reconocible el universo NIVEA SUN pero lo acerca al skincare asiático. El logo circular azul sigue como firma principal; a diferencia de los corporales clásicos amarillos y azules, el envase es predominantemente blanco, limpio y pequeño. 'Made in Korea / tecnología coreana' funciona como atributo de innovación.",
+          "tipografia": "Sans serif de lectura directa. Jerarquía: NIVEA SUN → Silky UV Stick → 50+ → protección/beneficios. El FPS tiene protagonismo pero comparte espacio con el nombre del formato y los claims de textura. Frente compacto con bastante información.",
+          "color": [
+            {"color": "Blanco", "significado": "limpieza / skincare"},
+            {"color": "Azul NIVEA", "significado": "reconocimiento y confianza"},
+            {"color": "Amarillo/dorado", "significado": "mantiene el universo solar"}
+          ],
+          "solucion_material": "Stick plástico rígido, pequeño y plano, barra ancha de extremos redondeados en forma de gota, elevación por rueda inferior. La forma rectangular achatada entra en cartera o bolsillo, cubre más área que un stick circular y mantiene buena precisión facial. Propuesta ligada a transportabilidad + aplicación directa + reaplicación. 15 g.",
+          "comunicacion": {
+            "promesa": "Protección alta + reaplicación limpia + acabado invisible.",
+            "publico": "Usuarios cotidianos, no exclusivamente de playa.",
+            "destaca": ["SPF 50+", "UVA/UVB", "Resistente al sudor y al agua", "Invisible", "No graso", "Sin residuos blancos", "Manos limpias", "Piel delicada"]
+          }
+        },
+        {
+          "marca": "ISDIN",
+          "producto": "Invisible Stick SPF 50",
+          "identidad_visual": "Probablemente el que más se despega visualmente del envase solar tradicional. Cuerpo compacto casi cuadrado con tapa translúcida celeste, base naranja intensa y frente completamente informativo. El gran logo ISDIN mantiene autoridad mientras 'Invisible Stick' presenta el formato.",
+          "percepcion": "dermocosmética + tecnológica + joven + innovadora + especializada",
+          "tipografia": "Sans serif moderna y funcional. Jerarquía: ISDIN → Invisible Stick → SPF 50 → UVA/PA++++ → información técnica. Más técnica que NIVEA; los códigos UVA / PA++++ funcionan como elementos de autoridad científica.",
+          "color": [
+            {"color": "Celeste", "significado": "tecnología, frescura, cuidado"},
+            {"color": "Naranja", "significado": "fotoprotección / reconocimiento de la línea"},
+            {"color": "Blanco", "significado": "información y claridad"}
+          ],
+          "observacion_color": "Hay temas de accesibilidad a revisar.",
+          "solucion_material": "Formato plástico compacto, ancho y bajo. Barra de superficie rectangular-ovalada ancha, orientada a zonas faciales/localizadas. Cabe en la mano, protege la fórmula al cerrarse, permite aplicar sin impregnar las manos y comunica portabilidad. ISDIN lo posiciona como complemento de otros fotoprotectores, para reaplicación y zonas sensibles.",
+          "comunicacion": {
+            "promesa": "Protección especializada de zonas sensibles + eficacia + evidencia.",
+            "destaca": ["SPF 50", "Zonas sensibles", "Resistente al agua y sudor", "Invisible", "Sin brillos", "No pegajoso", "No comedogénico", "Hipoalergénico", "Acción antioxidante"],
+            "evidencia": "Presenta resultados de estudios sobre facilidad de aplicación, acabado invisible y reducción de daño oxidativo."
+          }
+        },
+        {
+          "marca": "Natura",
+          "producto": "Natura Solar Stick FPS 50",
+          "identidad_visual": "El que más se acerca al territorio beauty + skincare + bienestar. Mantiene la marca madre y suma denominación de línea ('Natura Solar'). Abandona casi todos los códigos clásicos del producto de playa: forma rectangular vertical, bordes redondeados y combinación beige/manteca + celeste pastel. El logo se integra discretamente y el FPS 50 es protagonista.",
+          "percepcion": "natural + suave + cosmético + cotidiano + contemporáneo",
+          "tipografia": "Sans serif limpia combinada con el logotipo de Natura. Jerarquía: Natura Solar → FPS 50 → UVA/UVB → tipo de piel → textura/beneficios → formato. No busca parecer técnico; quiere que se entienda rápido: protección + tipo de piel + experiencia sensorial.",
+          "color": [
+            {"color": "Beige / crema", "significado": "piel, cuidado, suavidad"},
+            {"color": "Celeste pastel", "significado": "frescura, protección y bienestar"},
+            {"color": "Marrón/gris", "significado": "información"}
+          ],
+          "solucion_material": "Envase plástico rectangular vertical con rueda inferior integrada. 15 g, igual que NIVEA. Geometría angosta que favorece agarre, portabilidad, aplicación facial y guardado en cartera/neceser. Barra superior ancha y redondeada.",
+          "comunicacion": {
+            "enfoque": "Mucho peso en lo sensorial.",
+            "promete": ["Toque aterciopelado", "Acabado mate", "Invisible", "Sin brillo", "Sin sensación pegajosa", "Hidratación", "Disimula apariencia de poros", "Reaplicación durante el día", "Uso antes del maquillaje", "Resistencia al agua y sudor"]
+          }
+        },
+        {
+          "marca": "La Roche-Posay",
+          "producto": "Anthelios UVSport Pro-Resistance Stick 50+",
+          "identidad_visual": "El competidor más médico-técnico; habla de que está diseñado para resistir deporte o actividades de alta intensidad. Mantiene códigos fuertes de Anthelios: marca La Roche-Posay, azul profundo, naranja, blanco y gran indicador FPS. El formato compacto no elimina la estética dermatológica de la línea.",
+          "percepcion": "clínica + deportiva + profesional + alta eficacia",
+          "tipografia": "Sans serif racional con muchos niveles. Jerarquía: Anthelios → 50+ → UVSport → La Roche-Posay → Pro-Resistance Stick → tecnología/claims.",
+          "color": [
+            {"color": "Azul profundo", "significado": "autoridad, deporte y tecnología"},
+            {"color": "Naranja", "significado": "categoría solar / Anthelios"},
+            {"color": "Blanco", "significado": "dermatología"}
+          ],
+          "observacion_color": "Tiene el lenguaje cromático más intenso de los cuatro.",
+          "solucion_material": "Formato plástico bajo y ancho; visualmente más cercano a un objeto deportivo compacto que a un cosmético tradicional. Busca aplicación rápida en movimiento y superficie amplia para rostro. Enfatiza aplicación en todo el rostro, zonas sensibles, reaplicación durante actividad deportiva y resistencia intensa.",
+          "comunicacion": {
+            "promesa": "Alta protección especialmente en deporte + resistencia.",
+            "destaca": ["SPF50+ y PA++++", "Alta resistencia", "No escurre hacia los ojos con sudor", "Acabado invisible", "Uso en distintos fototipos", "Pruebas con atletas de múltiples disciplinas"],
+            "posicionamiento": "El stick técnico de alto rendimiento para actividad física y exposición intensa."
+          }
+        }
+      ]
+    }
+  ]
+}

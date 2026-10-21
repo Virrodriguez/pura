@@ -1,0 +1,780 @@
+<title>PURA Sunstick</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="PURA Protección Natural. SUNSTICK, protector solar facial en barra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout (brandbook PURA en Figma): bandas de color pleno a todo el ancho (amarillo con trama, blanco, celeste, color de línea, cierre amarillo).
+   Columna de lectura a la izquierda con títulos en mayúsculas; el stick 3D vive fijo a la derecha.
+   Diseño de un solo tema a propósito: la identidad es de colores planos claros, igual en cualquier tema del visor. */
+:root {
+  --ink: #251E18;          /* Negro topo */
+  --paper: #FEFEFE;        /* Blanco */
+  --sol: #FFE88B;          /* Amarillo primario */
+  --sol-trama: #FFE371;    /* Media luna de la trama (Figma 426:5093) */
+  --celeste: #C2E1F3;
+  --celeste-trama: #B3D9EF;
+  --naranja: #EF793F;
+  --naranja-trama: #F06D2E;
+  --iso: #F7702D;          /* Isotipo del logo (Figma 426:5193) */
+  --muted: #4A3D31;
+  --rule: rgba(37, 30, 24, .2);
+  --skin: #EEC6A6;
+  --pass: #EDB92A;
+  --line-bg: var(--sol);
+  --line-trama: var(--sol-trama);
+  --font: "Outfit", "Plus Jakarta Sans", "Avenir Next", ui-sans-serif, system-ui, sans-serif;
+  --ease: cubic-bezier(.215, .61, .355, 1);
+  color-scheme: light;
+}
+:root[data-line="sensitive"] { --line-bg: var(--celeste); --line-trama: var(--celeste-trama); --pass: #6FAED6; }
+:root[data-line="color"] { --line-bg: var(--naranja); --line-trama: var(--naranja-trama); --pass: #C9501A; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* Bandas de color. Sin z-index propio: el canvas 3D (z 1) queda por encima del fondo y por debajo del texto (z 2). */
+.band { position: relative; background: var(--band); transition: background-color .6s var(--ease); }
+.band-sol { --band: var(--sol); --trama-c: var(--sol-trama); }
+.band-blanco { --band: var(--paper); }
+.band-celeste { --band: var(--celeste); }
+.band-linea { --band: var(--line-bg); --trama-c: var(--line-trama); }
+
+/* Trama de medias lunas: máscara SVG generada con el path y la grilla del brandbook */
+.trama { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.trama-layer {
+  position: absolute; inset: -90px;
+  background: var(--trama-c);
+  transition: background-color .6s var(--ease);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+
+#gl { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; display: block; }
+
+.wrap {
+  position: relative; z-index: 2;
+  max-width: 1180px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.col { max-width: 34rem; min-width: 0; display: grid; gap: 1.25rem; }
+
+/* Logo real (Figma): los paths van en un <symbol>; los colores salen de --logo-txt / --logo-iso */
+.lg-txt { fill: var(--logo-txt, #251E18); }
+.lg-iso { fill: var(--logo-iso, #F7702D); }
+.logo-svg { display: block; height: auto; }
+
+/* Microtextos editoriales (como las esquinas de las slides) */
+.micro { font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; line-height: 1.35; margin: 0; }
+.topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding-block: 22px 0; }
+
+.ghost-btn {
+  font: 600 .8rem/1 var(--font); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); background: transparent;
+  border: 1.5px solid var(--ink); border-radius: 999px; padding: 10px 16px; cursor: pointer;
+  transition: background-color .15s var(--ease), color .15s var(--ease), transform .12s var(--ease);
+}
+.ghost-btn:hover { background: rgba(37, 30, 24, .08); }
+.ghost-btn:active { transform: scale(.97); }
+.ghost-btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* Tipografía: Gilroy Bold en el brandbook; Outfit como reemplazo geométrico */
+h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -.01em; text-transform: uppercase; text-wrap: balance; }
+h1 { font-size: clamp(2.3rem, 4.2vw + 1rem, 4.6rem); line-height: .98; }
+h1 .ln { display: block; }
+h2 { font-size: clamp(2rem, 3.2vw + 1rem, 3.6rem); line-height: 1; }
+h3 { font-size: clamp(2.2rem, 3.6vw + 1rem, 3.8rem); line-height: 1; }
+p { margin: 0; }
+.lede { font-size: 1.2rem; color: var(--muted); max-width: 30rem; }
+.kicker { font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+
+section.band { padding-block: clamp(80px, 14vh, 160px); }
+
+/* Hero amarillo con trama */
+#hero { min-height: 92svh; padding-block: 0 80px; display: flex; flex-direction: column; }
+#hero .hero-main { flex: 1; display: flex; align-items: center; padding-top: 32px; }
+#hero .logo-svg { width: clamp(170px, 18vw, 240px); }
+.zones { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 4px 0 0; list-style: none; }
+.zones li { font-size: .82rem; font-weight: 600; letter-spacing: .04em; border: 1.5px solid var(--ink); border-radius: 999px; padding: 6px 12px; background: var(--sol); }
+.fallback-stick { display: none; width: 120px; }
+.no-webgl .fallback-stick { display: block; }
+
+/* Valor */
+.needs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; margin: 8px 0 0; }
+.needs div { border-top: 1.5px solid var(--rule); padding-top: 10px; min-width: 0; }
+.needs dt { font-weight: 700; text-transform: uppercase; font-size: .9rem; letter-spacing: .06em; }
+.needs dd { margin: 2px 0 0; color: var(--muted); font-size: .95rem; }
+
+/* Beneficios (banda celeste) */
+.benefits { list-style: none; padding: 0; margin: 8px 0 0; display: grid; }
+.benefit { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-top: 1.5px solid var(--rule); }
+.benefit:last-child { border-bottom: 1.5px solid var(--rule); }
+.benefit svg { width: 26px; height: 12px; margin-top: 8px; fill: var(--iso); }
+.benefit b { font-weight: 700; }
+.benefit span { color: var(--muted); }
+.bridge { font-size: 1.15rem; font-weight: 600; }
+
+/* Modo de uso */
+.steps { margin: 4px 0 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 12px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.steps li::before { content: counter(s); font-weight: 700; font-size: 1.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.dose { background: var(--sol); border-radius: 24px; padding: 20px; display: grid; gap: 14px; margin: 0; }
+.dose-svg { width: 100%; max-width: 100%; height: auto; display: block; }
+.dose-zone { fill: var(--skin); }
+.dose-label { fill: var(--ink); font: 600 12px var(--font); letter-spacing: .14em; opacity: .55; }
+.pass { fill: none; stroke: var(--pass); stroke-width: 34; stroke-linecap: round; stroke-linejoin: round; opacity: .55; stroke-dasharray: 1; stroke-dashoffset: 1; mix-blend-mode: multiply; visibility: hidden; }
+.dose-meter { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.dose-count { font-weight: 600; font-variant-numeric: tabular-nums; }
+.pips { display: flex; gap: 6px; }
+.pips i { width: 26px; height: 13px; border-radius: 26px 26px 0 0; background: var(--rule); transition: background-color .2s var(--ease); }
+.pips i.on { background: var(--iso); }
+.day { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); position: relative; }
+.day::before { content: ""; position: absolute; left: 10%; right: 10%; top: 9px; height: 2px; background: var(--rule); }
+.day li { display: grid; justify-items: center; gap: 6px; text-align: center; font-size: .82rem; color: var(--muted); position: relative; min-width: 0; }
+.day li i { width: 20px; height: 20px; border-radius: 50%; background: var(--paper); border: 2px solid var(--ink); }
+.day li.re i { background: var(--iso); border-color: var(--iso); }
+.day b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.note { font-size: .95rem; color: var(--muted); }
+
+/* Líneas (la banda toma el color de la línea activa, con su trama) */
+.switch { display: flex; flex-wrap: wrap; gap: 8px; }
+.switch .ghost-btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 9px; }
+.sw { width: 20px; height: 20px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1.5px rgba(37, 30, 24, .3); }
+.line-card { min-height: 62vh; display: grid; align-content: center; padding-block: 40px; }
+.line-card .inner { display: grid; gap: 10px; }
+.line-card .chip { font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; }
+.line-card p:last-child { color: var(--muted); max-width: 28rem; }
+
+/* Cierre amarillo con trama y logo centrado (como la portada del brandbook) */
+#cierre { padding-block: clamp(90px, 16vh, 170px) calc(48px + env(safe-area-inset-bottom, 0px)); }
+#cierre .wrap { display: grid; justify-items: center; gap: 40px; text-align: center; }
+#cierre .logo-svg { width: clamp(180px, 22vw, 260px); }
+.legal { border-top: 1.5px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; max-width: 40rem; color: var(--muted); font-size: .95rem; }
+.sign-row { display: flex; justify-content: space-between; gap: 16px; width: 100%; flex-wrap: wrap; text-align: left; }
+
+@media (max-width: 859px) {
+  #hero { min-height: 100svh; }
+  #hero .hero-main { align-items: flex-start; }
+  .panel { background: var(--band); border-radius: 24px; padding: 22px 18px; transition: background-color .6s var(--ease); }
+  .line-card { min-height: 78vh; align-content: start; }
+  .line-card .inner { background: var(--band); border-radius: 24px; padding: 22px 18px; transition: background-color .6s var(--ease); }
+  .needs { grid-template-columns: minmax(0, 1fr); }
+  .day li { font-size: .74rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+</style>
+
+<!-- Logo PURA exportado de Figma (nodo 426:5193): paths sin cambios, solo los fill pasan a clases -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="pura-logo" viewBox="0 0 193 134">
+<path d="M164.716 61C158.172 61 152.598 63.382 147.997 68.1459C143.332 72.848 141 78.6334 141 85.5008C141 92.3679 143.332 98.1836 147.997 102.947C152.598 107.649 158.172 110 164.716 110C165.029 110 165.338 109.994 165.643 109.985C165.775 109.972 165.911 109.961 166.053 109.946C167.507 109.794 169.448 109.526 170.695 109.32C172.277 108.931 173.743 108.375 175.096 107.653C175.78 107.194 175.78 107.194 175.78 107.194C176.861 106.161 177.859 104.957 178.194 103.5C178.211 103.427 178.226 103.353 178.24 103.279C178.352 102.677 178.357 102.215 178.352 101.472C178.349 101.129 178.251 100.447 178.166 99.9164C178.088 99.4299 178.009 99.1281 177.8 98.6822C177.581 98.2159 177.24 97.6064 176.86 97.2587C176.739 97.1489 176.637 97.0556 176.6 97.0156C176.024 96.404 175 96.5967 174.271 97.0159C172.207 98.2037 169.868 98.5861 167.048 98.5861C163.16 98.586 159.953 97.3793 157.426 94.9665C154.834 92.4919 153.539 89.3365 153.539 85.5008C153.539 81.6648 154.834 78.5398 157.426 76.1268C159.953 73.6521 163.16 72.4155 167.048 72.4155C170.936 72.4155 174.143 73.6523 176.67 76.1268C179.197 78.5398 180.258 81.4354 180.258 85.2714C180.258 85.8951 180.258 87.0708 180.258 87.0708C180.273 87.2471 180.241 88.2339 180.258 88.4032C180.326 89.0749 180.258 90.3725 180.258 90.3725C180.235 90.9518 180.291 91.3518 180.258 91.7716C180.226 92.1849 180.279 93.4175 180.258 94.1025C180.243 95.3775 180.242 97.7912 180.242 100.285C180.242 100.93 180.242 100.93 180.242 100.93C180.261 101.234 180.225 101.202 180.242 101.472C180.242 102.311 180.242 102.753 180.242 103.279V108.48H193V62.2998H180.461V67.7743C176.768 63.2582 171.519 61.0001 164.716 61Z" class="lg-txt"/>
+<path d="M124.395 71.8471C125.548 68.8981 127.438 66.6863 130.064 65.2118C132.754 63.7373 135.733 63 139 63V76.2706C135.221 75.8405 131.826 76.5778 128.815 78.4824C125.868 80.3869 124.395 83.551 124.395 87.9746V110H112V63.9216H124.395V71.8471Z" class="lg-txt"/>
+<path d="M89.5696 64H102V110.693H89.5696V105.463C86.5503 109.821 81.7645 112 75.212 112C69.9443 112 65.576 110.288 62.1071 106.864C58.7023 103.44 57 98.7082 57 92.6693V64H69.4304V91.1752C69.4304 94.288 70.2976 96.6848 72.0321 98.3658C73.7666 99.9845 76.0792 100.794 78.9701 100.794C82.182 100.794 84.7516 99.8288 86.6787 97.8989C88.6059 95.969 89.5696 93.0739 89.5696 89.2141V64Z" class="lg-txt"/>
+<path d="M28.2838 63C34.8283 63 40.402 65.3933 45.0027 70.18C49.6679 74.9044 52 80.7173 52 87.6174C51.9999 94.5173 49.6677 100.361 45.0027 105.147C40.402 109.871 34.8283 112.233 28.2838 112.233C27.9714 112.233 27.6624 112.228 27.3565 112.218C27.2255 112.205 27.0887 112.194 26.9465 112.179C25.4933 112.027 23.5515 111.757 22.3052 111.55C20.7228 111.159 19.2567 110.6 17.904 109.875C17.2202 109.414 17.2202 109.414 17.2202 109.414C16.1387 108.376 15.1421 107.167 14.807 105.706C14.7898 105.632 14.7741 105.556 14.7601 105.48C14.6484 104.875 14.643 104.411 14.6484 103.664C14.6509 103.32 14.7489 102.634 14.834 102.101C14.9119 101.612 14.9904 101.31 15.2 100.862C15.4194 100.393 15.7604 99.7803 16.1417 99.4302C16.2613 99.3203 16.3626 99.2271 16.4001 99.1871C16.8654 98.6908 17.5782 98.6939 18.1622 99.0426C20.3518 100.35 23.0211 100.765 25.952 100.765C29.8396 100.765 33.0472 99.5525 35.5742 97.1282C38.166 94.6418 39.4611 91.4714 39.4613 87.6174C39.4613 83.7632 38.1661 80.6233 35.5742 78.1988C33.0472 75.7124 29.8396 74.4699 25.952 74.4698C22.0644 74.4698 18.8568 75.7125 16.3297 78.1988C13.8026 80.6233 12.7421 83.5327 12.7421 87.3869C12.7422 88.0136 12.7421 89.1949 12.7421 89.1949C12.7269 89.372 12.7594 90.3635 12.7421 90.5336C12.6738 91.2085 12.7421 92.5123 12.7421 92.5123C12.7649 93.0944 12.7093 93.4962 12.7421 93.918C12.7744 94.3333 12.7206 95.5719 12.7421 96.2601C12.7571 97.5411 12.7582 99.9663 12.7582 102.472C12.7582 103.12 12.7582 103.12 12.7582 103.12C12.7394 103.426 12.7748 103.393 12.7582 103.664C12.7582 104.508 12.7582 104.952 12.7582 105.48V134H0V64.306H12.5387V69.8066C16.2321 65.269 21.4805 63.0001 28.2838 63Z" class="lg-txt"/>
+<path d="M41.0039 133.512V123.535H44.6331C45.3027 123.535 45.8919 123.66 46.4008 123.91C46.9186 124.151 47.3204 124.509 47.6061 124.982C47.8918 125.446 48.0346 126.004 48.0346 126.656C48.0346 127.299 47.8873 127.852 47.5927 128.316C47.307 128.781 46.9097 129.138 46.4008 129.388C45.8919 129.638 45.3027 129.763 44.6331 129.763H42.5841V133.512H41.0039ZM42.5841 128.357H44.6733C45.0304 128.357 45.3429 128.285 45.6107 128.142C45.8785 127.999 46.0883 127.803 46.2401 127.553C46.3919 127.294 46.4678 126.991 46.4678 126.642C46.4678 126.294 46.3919 125.995 46.2401 125.745C46.0883 125.486 45.8785 125.29 45.6107 125.156C45.3429 125.013 45.0304 124.942 44.6733 124.942H42.5841V128.357ZM49.6615 133.512V123.535H53.2907C53.9603 123.535 54.5496 123.66 55.0585 123.91C55.5674 124.151 55.9646 124.509 56.2503 124.982C56.545 125.446 56.6923 126.004 56.6923 126.656C56.6923 127.343 56.5182 127.932 56.17 128.423C55.8307 128.915 55.3709 129.272 54.7906 129.495L57.094 133.512H55.2995L52.8488 129.16L53.88 129.763H51.2418V133.512H49.6615ZM51.2418 128.357H53.3175C53.6836 128.357 54.0005 128.285 54.2683 128.142C54.5362 127.999 54.7415 127.803 54.8844 127.553C55.0361 127.294 55.112 126.991 55.112 126.642C55.112 126.294 55.0361 125.995 54.8844 125.745C54.7415 125.486 54.5362 125.29 54.2683 125.156C54.0005 125.013 53.6836 124.942 53.3175 124.942H51.2418V128.357ZM63.2716 133.673C62.5485 133.673 61.8744 133.544 61.2495 133.285C60.6334 133.026 60.0888 132.664 59.6157 132.2C59.1514 131.736 58.7854 131.191 58.5175 130.566C58.2586 129.941 58.1292 129.258 58.1292 128.517C58.1292 127.776 58.2586 127.093 58.5175 126.468C58.7854 125.834 59.1514 125.29 59.6157 124.834C60.0799 124.37 60.6245 124.013 61.2495 123.763C61.8744 123.504 62.5485 123.375 63.2716 123.375C64.0037 123.375 64.6778 123.504 65.2938 123.763C65.9188 124.013 66.4634 124.37 66.9276 124.834C67.4008 125.299 67.7668 125.843 68.0257 126.468C68.2847 127.093 68.4141 127.776 68.4141 128.517C68.4141 129.258 68.2802 129.941 68.0124 130.566C67.7534 131.191 67.3919 131.736 66.9276 132.2C66.4634 132.664 65.9188 133.026 65.2938 133.285C64.6689 133.544 63.9948 133.673 63.2716 133.673ZM63.2716 132.227C63.7895 132.227 64.2626 132.133 64.6912 131.946C65.1286 131.758 65.5081 131.499 65.8295 131.169C66.1509 130.83 66.4009 130.437 66.5794 129.99C66.758 129.535 66.8473 129.044 66.8473 128.517C66.8473 127.99 66.758 127.504 66.5794 127.058C66.4009 126.611 66.1509 126.218 65.8295 125.879C65.5081 125.54 65.1286 125.276 64.6912 125.089C64.2626 124.901 63.7895 124.808 63.2716 124.808C62.7538 124.808 62.2762 124.901 61.8387 125.089C61.4102 125.276 61.0352 125.54 60.7138 125.879C60.3924 126.218 60.1424 126.611 59.9639 127.058C59.7942 127.504 59.7094 127.99 59.7094 128.517C59.7094 129.044 59.7942 129.535 59.9639 129.99C60.1424 130.437 60.3924 130.83 60.7138 131.169C61.0352 131.499 61.4146 131.758 61.8521 131.946C62.2896 132.133 62.7628 132.227 63.2716 132.227ZM71.5432 133.512V124.942H68.8916V123.535H75.7215V124.942H73.11V133.512H71.5432ZM76.903 133.512V123.535H83.4784V124.942H78.4832V127.807H83.2105V129.214H78.4832V132.106H83.4784V133.512H76.903ZM89.5929 133.673C88.8876 133.673 88.2314 133.544 87.6243 133.285C87.0261 133.026 86.5039 132.669 86.0575 132.213C85.62 131.749 85.2763 131.205 85.0263 130.58C84.7763 129.955 84.6513 129.267 84.6513 128.517C84.6513 127.776 84.7718 127.093 85.0129 126.468C85.2629 125.834 85.6111 125.29 86.0575 124.834C86.5039 124.37 87.0261 124.013 87.6243 123.763C88.2225 123.504 88.8787 123.375 89.5929 123.375C90.2982 123.375 90.9276 123.495 91.4812 123.736C92.0436 123.977 92.5168 124.294 92.9007 124.687C93.2846 125.071 93.5614 125.491 93.731 125.946L92.3115 126.616C92.0972 126.08 91.7535 125.647 91.2803 125.317C90.816 124.977 90.2536 124.808 89.5929 124.808C88.9322 124.808 88.3475 124.964 87.8386 125.276C87.3297 125.589 86.9324 126.022 86.6467 126.575C86.3699 127.129 86.2316 127.776 86.2316 128.517C86.2316 129.258 86.3699 129.91 86.6467 130.472C86.9324 131.026 87.3297 131.459 87.8386 131.771C88.3475 132.075 88.9322 132.227 89.5929 132.227C90.2536 132.227 90.816 132.062 91.2803 131.731C91.7535 131.401 92.0972 130.968 92.3115 130.432L93.731 131.102C93.5614 131.548 93.2846 131.968 92.9007 132.361C92.5168 132.754 92.0436 133.071 91.4812 133.312C90.9276 133.553 90.2982 133.673 89.5929 133.673ZM100.003 133.673C99.2977 133.673 98.6415 133.544 98.0344 133.285C97.4362 133.026 96.9139 132.669 96.4675 132.213C96.0301 131.749 95.6863 131.205 95.4364 130.58C95.1864 129.955 95.0614 129.267 95.0614 128.517C95.0614 127.776 95.1819 127.093 95.423 126.468C95.6729 125.834 96.0211 125.29 96.4675 124.834C96.9139 124.37 97.4362 124.013 98.0344 123.763C98.6325 123.504 99.2887 123.375 100.003 123.375C100.708 123.375 101.338 123.495 101.891 123.736C102.454 123.977 102.927 124.294 103.311 124.687C103.695 125.071 103.971 125.491 104.141 125.946L102.721 126.616C102.507 126.08 102.163 125.647 101.69 125.317C101.226 124.977 100.664 124.808 100.003 124.808C99.3423 124.808 98.7575 124.964 98.2486 125.276C97.7398 125.589 97.3425 126.022 97.0568 126.575C96.78 127.129 96.6416 127.776 96.6416 128.517C96.6416 129.258 96.78 129.91 97.0568 130.472C97.3425 131.026 97.7398 131.459 98.2486 131.771C98.7575 132.075 99.3423 132.227 100.003 132.227C100.664 132.227 101.226 132.062 101.69 131.731C102.163 131.401 102.507 130.968 102.721 130.432L104.141 131.102C103.971 131.548 103.695 131.968 103.311 132.361C102.927 132.754 102.454 133.071 101.891 133.312C101.338 133.553 100.708 133.673 100.003 133.673ZM105.766 133.512V123.535H107.346V133.512H105.766ZM114.263 133.673C113.539 133.673 112.865 133.544 112.24 133.285C111.624 133.026 111.08 132.664 110.607 132.2C110.142 131.736 109.776 131.191 109.509 130.566C109.25 129.941 109.12 129.258 109.12 128.517C109.12 127.776 109.25 127.093 109.509 126.468C109.776 125.834 110.142 125.29 110.607 124.834C111.071 124.37 111.616 124.013 112.24 123.763C112.865 123.504 113.539 123.375 114.263 123.375C114.995 123.375 115.669 123.504 116.285 123.763C116.91 124.013 117.454 124.37 117.919 124.834C118.392 125.299 118.758 125.843 119.017 126.468C119.276 127.093 119.405 127.776 119.405 128.517C119.405 129.258 119.271 129.941 119.003 130.566C118.744 131.191 118.383 131.736 117.919 132.2C117.454 132.664 116.91 133.026 116.285 133.285C115.66 133.544 114.986 133.673 114.263 133.673ZM114.263 132.227C114.78 132.227 115.254 132.133 115.682 131.946C116.12 131.758 116.499 131.499 116.82 131.169C117.142 130.83 117.392 130.437 117.57 129.99C117.749 129.535 117.838 129.044 117.838 128.517C117.838 127.99 117.749 127.504 117.57 127.058C117.392 126.611 117.142 126.218 116.82 125.879C116.499 125.54 116.12 125.276 115.682 125.089C115.254 124.901 114.78 124.808 114.263 124.808C113.745 124.808 113.267 124.901 112.83 125.089C112.401 125.276 112.026 125.54 111.705 125.879C111.383 126.218 111.133 126.611 110.955 127.058C110.785 127.504 110.7 127.99 110.7 128.517C110.7 129.044 110.785 129.535 110.955 129.99C111.133 130.437 111.383 130.83 111.705 131.169C112.026 131.499 112.406 131.758 112.843 131.946C113.281 132.133 113.754 132.227 114.263 132.227ZM113.513 122.21L114.49 120H116.472L115.013 122.21H113.513ZM121.172 133.512V123.535H122.444L128.042 131.263L127.439 131.356V123.535H129.006V133.512H127.734L122.176 125.732L122.752 125.625V133.512H121.172ZM133.413 133.512V123.535H134.685L140.283 131.263L139.68 131.356V123.535H141.247V133.512H139.975L134.417 125.732L134.993 125.625V133.512H133.413ZM142.429 133.512L145.938 123.535H147.893L151.402 133.512H149.714L148.951 131.276H144.893L144.116 133.512H142.429ZM145.349 129.87H148.469L146.701 124.647H147.143L145.349 129.87ZM153.686 133.512V124.942H151.034V123.535H157.864V124.942H155.253V133.512H153.686ZM162.782 133.673C162.041 133.673 161.38 133.517 160.8 133.204C160.229 132.892 159.778 132.463 159.448 131.919C159.126 131.374 158.965 130.754 158.965 130.057V123.535H160.546V129.99C160.546 130.428 160.639 130.816 160.827 131.155C161.023 131.495 161.287 131.758 161.617 131.946C161.956 132.133 162.345 132.227 162.782 132.227C163.228 132.227 163.617 132.133 163.947 131.946C164.286 131.758 164.55 131.495 164.737 131.155C164.934 130.816 165.032 130.428 165.032 129.99V123.535H166.599V130.057C166.599 130.754 166.438 131.374 166.117 131.919C165.795 132.463 165.344 132.892 164.764 133.204C164.193 133.517 163.532 133.673 162.782 133.673ZM168.58 133.512V123.535H172.209C172.878 123.535 173.468 123.66 173.977 123.91C174.485 124.151 174.883 124.509 175.168 124.982C175.463 125.446 175.61 126.004 175.61 126.656C175.61 127.343 175.436 127.932 175.088 128.423C174.749 128.915 174.289 129.272 173.709 129.495L176.012 133.512H174.218L171.767 129.16L172.798 129.763H170.16V133.512H168.58ZM170.16 128.357H172.236C172.602 128.357 172.919 128.285 173.186 128.142C173.454 127.999 173.66 127.803 173.802 127.553C173.954 127.294 174.03 126.991 174.03 126.642C174.03 126.294 173.954 125.995 173.802 125.745C173.66 125.486 173.454 125.29 173.186 125.156C172.919 125.013 172.602 124.942 172.236 124.942H170.16V128.357ZM176.458 133.512L179.967 123.535H181.922L185.431 133.512H183.743L182.98 131.276H178.922L178.145 133.512H176.458ZM179.377 129.87H182.498L180.73 124.647H181.172L179.377 129.87ZM186.614 133.512V123.535H188.194V132.106H192.507V133.512H186.614Z" class="lg-txt"/>
+<path d="M48.6687 50.4407C45.5 52.1111 40.2432 49.7248 41.1036 45.5496C42.3011 39.7383 44.0892 33.509 45.7121 30.1877C48.4715 24.5405 52.5161 17.9549 57.615 13.6328C62.7137 9.31067 68.7669 5.88212 75.4288 3.54299C82.0907 1.20397 89.2309 -6.304e-07 96.4417 0C103.653 6.303e-07 110.793 1.20397 117.455 3.54299C124.117 5.88213 130.17 9.31067 135.268 13.6329C140.367 17.9549 145.318 24.5405 148.078 30.1877C149.69 33.4865 150.908 39.6541 151.643 45.4316C152.181 49.6687 146.696 52.1205 143.453 50.4197C134.169 45.5491 118.007 39.2345 96.4417 39.0948C74.6635 38.9539 58.1188 45.4594 48.6687 50.4407Z" class="lg-iso"/>
+  </symbol>
+  <!-- Media luna de la trama (Figma 426:5093), también es la forma del isotipo -->
+  <symbol id="media-luna" viewBox="0 0 110.67 50.9783">
+    <path d="M7.65895 50.4407C4.49022 52.1111 -0.766531 49.7248 0.0938339 45.5496C1.29136 39.7383 3.07939 33.509 4.7023 30.1877C7.46177 24.5405 11.5064 17.9549 16.6053 13.6328C21.704 9.31067 27.7572 5.88212 34.4191 3.54299C41.081 1.20397 48.2212 -6.304e-07 55.432 0C62.6428 6.303e-07 69.783 1.20397 76.4449 3.54299C83.1068 5.88213 89.16 9.31067 94.2587 13.6329C99.3576 17.9549 104.309 24.5405 107.069 30.1877C108.681 33.4865 109.899 39.6541 110.634 45.4316C111.172 49.6687 105.686 52.1205 102.444 50.4197C93.1592 45.5491 76.9973 39.2345 55.432 39.0948C33.6538 38.9539 17.1091 45.4594 7.65895 50.4407Z"/>
+  </symbol>
+</svg>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<main>
+  <section id="hero" class="band band-sol">
+    <div class="trama" aria-hidden="true"><div class="trama-layer"></div></div>
+    <div class="wrap" style="width:100%">
+      <div class="topbar">
+        <p class="micro">Pura protección<br>solar natural</p>
+        <button class="ghost-btn" id="motionToggle" type="button" aria-pressed="false">Pausar animación</button>
+      </div>
+    </div>
+    <div class="hero-main">
+      <div class="wrap" style="width:100%">
+        <div class="col">
+          <svg class="logo-svg hero-in" viewBox="0 0 193 134" role="img" aria-label="pura, protección natural"><use href="#pura-logo"/></svg>
+          <h1><span class="ln">Tu protector solar,</span><span class="ln">siempre a mano.</span></h1>
+          <p class="lede hero-in">SUNSTICK es una barra facial con componentes minerales. Se pasa directo sobre la piel, sin volcar producto en las manos, y te acompaña todo el día para que reaplicar sea un hábito simple.</p>
+          <ul class="zones hero-in" aria-label="Zonas de aplicación">
+            <li>Rostro</li><li>Nariz</li><li>Orejas</li><li>Contorno de ojos</li><li>Línea del cabello</li>
+          </ul>
+          <svg class="fallback-stick" viewBox="0 0 120 260" aria-hidden="true">
+            <rect x="20" y="60" width="80" height="180" rx="26" fill="#FFE88B" stroke="#251E18" stroke-width="3"/>
+            <rect x="22" y="8" width="76" height="70" rx="24" fill="#FEFEFE" stroke="#251E18" stroke-width="3"/>
+            <rect x="38" y="238" width="44" height="14" rx="4" fill="#251E18"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="valor" class="band band-blanco">
+    <div class="wrap">
+      <div class="col panel">
+        <p class="kicker reveal">Propuesta de valor</p>
+        <h2 class="reveal">Portable, limpia, para reaplicar.</h2>
+        <p class="lede reveal">Protector solar en barra, práctico y limpio, para usar y reaplicar en cualquier momento del día. Un formato compacto que entra en la rutina y ayuda a sostener la protección solar como hábito.</p>
+        <dl class="needs reveal">
+          <div><dt>Portabilidad</dt><dd>Lo llevás siempre encima.</dd></div>
+          <div><dt>Practicidad</dt><dd>Abrís, aplicás y guardás.</dd></div>
+          <div><dt>Limpieza</dt><dd>Menos contacto del producto con las manos.</dd></div>
+          <div><dt>Recordación</dt><dd>El objeto mismo te invita a reaplicar.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="beneficios" class="band band-celeste">
+    <div class="wrap">
+      <div class="col panel">
+        <p class="kicker reveal">Beneficios de la barra</p>
+        <h2 class="reveal">Por qué en barra.</h2>
+        <ul class="benefits">
+          <li class="benefit"><svg viewBox="0 0 110.67 50.9783" aria-hidden="true"><use href="#media-luna"/></svg><p><b>Más portable.</b> <span>Compacto y fácil de llevar.</span></p></li>
+          <li class="benefit"><svg viewBox="0 0 110.67 50.9783" aria-hidden="true"><use href="#media-luna"/></svg><p><b>No se derrama.</b> <span>Al ser sólido, reduce el riesgo de pérdidas dentro del bolso.</span></p></li>
+          <li class="benefit"><svg viewBox="0 0 110.67 50.9783" aria-hidden="true"><use href="#media-luna"/></svg><p><b>Aplicación directa.</b> <span>Se pasa sobre la piel sin volcar producto en la mano.</span></p></li>
+          <li class="benefit"><svg viewBox="0 0 110.67 50.9783" aria-hidden="true"><use href="#media-luna"/></svg><p><b>Más limpio.</b> <span>Ensucia menos.</span></p></li>
+          <li class="benefit"><svg viewBox="0 0 110.67 50.9783" aria-hidden="true"><use href="#media-luna"/></svg><p><b>Más preciso.</b> <span>Funciona bien en zonas puntuales como nariz, orejas o contorno de ojos.</span></p></li>
+          <li class="benefit"><svg viewBox="0 0 110.67 50.9783" aria-hidden="true"><use href="#media-luna"/></svg><p><b>Para el movimiento.</b> <span>Cómodo para deporte, playa, caminatas o traslados.</span></p></li>
+          <li class="benefit"><svg viewBox="0 0 110.67 50.9783" aria-hidden="true"><use href="#media-luna"/></svg><p><b>Favorece el hábito.</b> <span>Un objeto chico y accesible es más fácil de tener cerca y recordar.</span></p></li>
+        </ul>
+        <p class="bridge reveal">El desafío de la barra: no hay una dosis evidente. Por eso te mostramos cuánto aplicar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="uso" class="band band-blanco">
+    <div class="wrap">
+      <div class="col panel">
+        <p class="kicker reveal">Modo de uso</p>
+        <h2 class="reveal">¿Cuánto aplicar?</h2>
+        <p class="lede reveal">En una crema ves cuánto producto ponés en la mano. En una barra, la medida son las pasadas.</p>
+        <ol class="steps reveal">
+          <li>Hacé cuatro pasadas de ida y vuelta sobre la misma zona.</li>
+          <li>Superponé las pasadas para no dejar espacios sin cubrir.</li>
+          <li>Distribuí el producto para lograr una capa uniforme.</li>
+          <li>Reaplicá al menos cada 2 horas al aire libre, y después de nadar o transpirar.</li>
+        </ol>
+        <figure class="dose">
+          <svg class="dose-svg" viewBox="0 0 320 190" role="img" aria-labelledby="doseTitle">
+            <title id="doseTitle">Cuatro pasadas de ida y vuelta superpuestas sobre la mejilla</title>
+            <rect class="dose-zone" x="0" y="0" width="320" height="190" rx="22"/>
+            <text class="dose-label" x="20" y="28">MEJILLA</text>
+            <path class="pass" pathLength="1" d="M40 62 C120 50 200 70 280 58 C200 76 120 62 40 78"/>
+            <path class="pass" pathLength="1" d="M40 88 C120 76 200 96 280 84 C200 102 120 88 40 104"/>
+            <path class="pass" pathLength="1" d="M40 114 C120 102 200 122 280 110 C200 128 120 114 40 130"/>
+            <path class="pass" pathLength="1" d="M40 140 C120 128 200 148 280 136 C200 154 120 140 40 156"/>
+          </svg>
+          <figcaption class="dose-meter">
+            <span class="dose-count" id="doseCount" aria-live="polite">Pasadas: 0 de 4</span>
+            <span class="pips" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </figcaption>
+        </figure>
+        <div class="reveal" style="display:grid;gap:12px">
+          <p class="kicker">Ejemplo de un día al aire libre</p>
+          <ol class="day">
+            <li><i></i><b>0 h</b>aplicás</li>
+            <li class="re"><i></i><b>2 h</b>reaplicás</li>
+            <li class="re"><i></i><b>4 h</b>reaplicás</li>
+            <li class="re"><i></i><b>6 h</b>reaplicás</li>
+            <li class="re"><i></i><b>8 h</b>reaplicás</li>
+          </ol>
+          <p class="note">Después de nadar, transpirar o secarte con toalla, volvé a aplicar aunque no hayan pasado 2 horas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lineas" class="band band-linea" style="padding-bottom:40px">
+    <div class="trama" aria-hidden="true"><div class="trama-layer"></div></div>
+    <div class="wrap">
+      <div class="col panel">
+        <p class="kicker reveal">Líneas de producto</p>
+        <h2 class="reveal">Tres líneas, un mismo gesto.</h2>
+        <div class="switch" role="group" aria-label="Ver el stick en cada línea">
+          <button class="ghost-btn" type="button" data-pick="classic" aria-pressed="true"><span class="sw" style="--c:#FFE88B"></span>Classic</button>
+          <button class="ghost-btn" type="button" data-pick="sensitive" aria-pressed="false"><span class="sw" style="--c:#C2E1F3"></span>Sensitive</button>
+          <button class="ghost-btn" type="button" data-pick="color" aria-pressed="false"><span class="sw" style="--c:#EF793F"></span>Con color</button>
+        </div>
+      </div>
+      <article class="line-card col" data-key="classic">
+        <div class="inner">
+          <p class="chip"><span class="sw" style="--c:#FFE88B"></span>Amarillo Pura</p>
+          <h3>Classic</h3>
+          <p>Protección solar clásica para todo tipo de pieles. Aporta luminosidad y no deja residuos.</p>
+        </div>
+      </article>
+      <article class="line-card col" data-key="sensitive">
+        <div class="inner">
+          <p class="chip"><span class="sw" style="--c:#C2E1F3"></span>Celeste</p>
+          <h3>Sensitive</h3>
+          <p>Para pieles sensibles. Un celeste que habla de calma, suavidad y cuidado.</p>
+        </div>
+      </article>
+      <article class="line-card col" data-key="color">
+        <div class="inner">
+          <p class="chip"><span class="sw" style="--c:#EF793F"></span>Naranja</p>
+          <h3>Con color</h3>
+          <p>Protección con color: suma luminosidad para una apariencia natural y saludable.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer id="cierre" class="band band-sol">
+    <div class="trama" aria-hidden="true"><div class="trama-layer"></div></div>
+    <div class="wrap">
+      <a href="#hero" aria-label="pura, protección natural, volver arriba" style="border-radius:8px">
+        <svg class="logo-svg" viewBox="0 0 193 134" aria-hidden="true"><use href="#pura-logo"/></svg>
+      </a>
+      <div class="legal">
+        <p>El protector solar reduce la cantidad de radiación UV que llega a la piel. Complementalo con sombra, ropa y sombrero.</p>
+        <p>Reaplicá al menos cada 2 horas cuando estés al aire libre, y después de nadar, transpirar o secarte con toalla.</p>
+      </div>
+      <div class="sign-row">
+        <p class="micro">Visual identity<br>by Virginia Rodriguez</p>
+        <p class="micro" style="text-align:right">Pura protección<br>solar natural</p>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { Timer } from "three/addons/misc/Timer.js"; // en r170 Timer vive en addons (pasa al core en r179)
+
+const { gsap, ScrollTrigger } = window;
+gsap.registerPlugin(ScrollTrigger);
+
+const root = document.documentElement;
+root.dataset.line = "classic";
+
+// Colores de cada línea: cuerpo del envase, barra (producto) y logo de la etiqueta (variantes del brandbook)
+const LINES = {
+  classic:   { body: "#FFE88B", barra: "#F7F2E6", iso: "#F7702D", txt: "#251E18" },
+  sensitive: { body: "#C2E1F3", barra: "#F7F2E6", iso: "#F7702D", txt: "#251E18" },
+  color:     { body: "#EF793F", barra: "#E8B490", iso: "#FFE88B", txt: "#FEFEFE" },
+};
+
+// Estado que GSAP anima y el loop de Three.js lee
+const state = { intro: 1, cap: 0, twist: 0, rise: 0, swipe: 0, lay: 0, out: 0 };
+let reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let paused = false;
+let currentLine = "classic";
+
+/* ---------- Trama del brandbook ---------- */
+// Grilla medida en la portada de Figma (426:5092): media luna de 110.67×50.98 rotada 50°,
+// repetida con los vectores A y B. Se arma como máscara SVG del tamaño de cada banda.
+const LUNA_D = document.querySelector("#media-luna path").getAttribute("d");
+const A = [55.84, -37.77], B = [-11.16, 158];
+const tramaScale = () => (innerWidth < 860 ? 0.72 : 1);
+
+function tramaSVG(w, h, s) {
+  const det = A[0] * B[1] - A[1] * B[0];
+  const pad = 140;
+  const corners = [[-pad, -pad], [w + pad, -pad], [-pad, h + pad], [w + pad, h + pad]].map(([x, y]) => [x / s, y / s]);
+  const is = corners.map(([x, y]) => (x * B[1] - y * B[0]) / det);
+  const js = corners.map(([x, y]) => (A[0] * y - A[1] * x) / det);
+  const uses = [];
+  for (let i = Math.floor(Math.min(...is)) - 1; i <= Math.ceil(Math.max(...is)) + 1; i++) {
+    for (let j = Math.floor(Math.min(...js)) - 1; j <= Math.ceil(Math.max(...js)) + 1; j++) {
+      const x = (i * A[0] + j * B[0]) * s, y = (i * A[1] + j * B[1]) * s;
+      if (x < -pad || x > w + pad || y < -pad || y > h + pad) continue;
+      uses.push(`<use href="#l" x="${x.toFixed(1)}" y="${y.toFixed(1)}"/>`);
+    }
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><defs><path id="l" d="${LUNA_D}" transform="scale(${s}) translate(55.18 58.72) rotate(50) translate(-55.335 -25.49)"/></defs>${uses.join("")}</svg>`;
+}
+
+const tramaLayers = [...document.querySelectorAll(".trama-layer")];
+function buildTramas() {
+  const s = tramaScale();
+  tramaLayers.forEach((layer) => {
+    const w = Math.ceil(layer.offsetWidth), h = Math.ceil(layer.offsetHeight);
+    if (!w || !h) return;
+    const url = `url("data:image/svg+xml,${encodeURIComponent(tramaSVG(w, h, s))}")`;
+    layer.style.webkitMaskImage = url;
+    layer.style.maskImage = url;
+    layer.style.webkitMaskSize = layer.style.maskSize = `${w}px ${h}px`;
+  });
+}
+buildTramas();
+let tramaTimer;
+new ResizeObserver(() => { clearTimeout(tramaTimer); tramaTimer = setTimeout(buildTramas, 150); })
+  .observe(document.body);
+
+/* ---------- Three.js: escena ---------- */
+const canvas = document.getElementById("gl");
+let three = null;
+
+function roundedRect(w, d, r) {
+  const s = new THREE.Shape();
+  const x = w / 2, y = d / 2;
+  s.moveTo(-x + r, -y);
+  s.lineTo(x - r, -y);
+  s.absarc(x - r, -y + r, r, -Math.PI / 2, 0, false);
+  s.lineTo(x, y - r);
+  s.absarc(x - r, y - r, r, 0, Math.PI / 2, false);
+  s.lineTo(-x + r, y);
+  s.absarc(-x + r, y - r, r, Math.PI / 2, Math.PI, false);
+  s.lineTo(-x, -y + r);
+  s.absarc(-x + r, -y + r, r, Math.PI, Math.PI * 1.5, false);
+  return s;
+}
+
+// Extruye la sección ovalada hacia arriba (Y) con la base en y = 0
+function extrudeUp(shape, height, bevelThickness, bevelSize) {
+  const g = new THREE.ExtrudeGeometry(shape, {
+    depth: height, bevelEnabled: true, bevelThickness, bevelSize,
+    bevelSegments: 6, curveSegments: 40,
+  });
+  g.rotateX(-Math.PI / 2);
+  g.translate(0, bevelThickness, 0);
+  return g;
+}
+
+// Etiqueta: el logo real de Figma (mismo <symbol>) rasterizado en un canvas, en la variante de color de la línea
+const logoInner = document.getElementById("pura-logo").innerHTML;
+async function drawLabel(ctx, line) {
+  const { iso, txt } = LINES[line];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="772" height="536" viewBox="0 0 193 134">${logoInner
+    .replaceAll('class="lg-txt"', `fill="${txt}"`).replaceAll('class="lg-iso"', `fill="${iso}"`)}</svg>`;
+  const img = new Image();
+  img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  await img.decode();
+  const c = ctx.canvas;
+  ctx.clearRect(0, 0, c.width, c.height);
+  ctx.save();
+  ctx.translate(c.width / 2, c.height / 2);
+  ctx.rotate(-Math.PI / 2);
+  const w = 600, h = w * 134 / 193;
+  ctx.drawImage(img, -w / 2, -h / 2 - 24, w, h);
+  ctx.fillStyle = txt;
+  ctx.textAlign = "center";
+  ctx.font = '700 30px Outfit, "Plus Jakarta Sans", sans-serif';
+  if ("letterSpacing" in ctx) ctx.letterSpacing = "8px";
+  ctx.fillText("SUNSTICK", 0, 236);
+  ctx.restore();
+}
+
+function initThree() {
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+  renderer.toneMapping = THREE.NeutralToneMapping; // conserva los colores de marca mejor que ACES
+  renderer.toneMappingExposure = 1.0;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, innerWidth / innerHeight, 0.1, 100);
+  camera.position.set(0, 1.1, 8);
+  camera.lookAt(0, 0, 0);
+
+  // Luz cálida tipo sol: key direccional + relleno hemisférico amarillo + rim naranja
+  const sun = new THREE.DirectionalLight(0xfff0cf, 2.4);
+  sun.position.set(4, 6, 5);
+  const sky = new THREE.HemisphereLight(0xfff7e6, 0xffe88b, 0.8);
+  const rim = new THREE.DirectionalLight(0xffb27a, 1.1);
+  rim.position.set(-5, 2, -4);
+  scene.add(sun, sky, rim);
+
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const room = new RoomEnvironment();
+  scene.environment = pmrem.fromScene(room, 0.04).texture;
+  scene.environmentIntensity = 0.45;
+  room.dispose();
+  pmrem.dispose();
+
+  // Materiales
+  const bodyMat = new THREE.MeshPhysicalMaterial({ color: LINES.classic.body, roughness: 0.42, clearcoat: 0.5, clearcoatRoughness: 0.3 });
+  const capMat = new THREE.MeshPhysicalMaterial({ color: "#FEFEFE", roughness: 0.32, clearcoat: 0.6, clearcoatRoughness: 0.2, transparent: true });
+  const barraMat = new THREE.MeshStandardMaterial({ color: LINES.classic.barra, roughness: 0.85 });
+  const dialMat = new THREE.MeshStandardMaterial({ color: "#251E18", roughness: 0.55, flatShading: true });
+
+  // Geometría procedural del stick
+  const rig = new THREE.Group();
+  const stick = new THREE.Group();
+  stick.position.y = -1.45;
+  rig.add(stick);
+  scene.add(rig);
+
+  const dial = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.38, 0.16, 26), dialMat);
+  dial.position.y = -0.08;
+  const body = new THREE.Mesh(extrudeUp(roundedRect(1.3, 0.62, 0.28), 2.0, 0.03, 0.03), bodyMat);
+  const BARRA_Y = 2.06 - 0.74 + 0.06;
+  const barra = new THREE.Mesh(extrudeUp(roundedRect(1.12, 0.46, 0.2), 0.5, 0.12, 0.04), barraMat);
+  barra.position.y = BARRA_Y;
+  const CAP_Y = 2.08;
+  const capPivot = new THREE.Group();
+  const cap = new THREE.Mesh(extrudeUp(roundedRect(1.32, 0.64, 0.29), 0.8, 0.05, 0.03), capMat);
+  capPivot.add(cap);
+  capPivot.position.y = CAP_Y;
+
+  // Etiqueta en la cara frontal plana del envase
+  const labelCanvas = document.createElement("canvas");
+  labelCanvas.width = 512; labelCanvas.height = 1240;
+  const labelCtx = labelCanvas.getContext("2d");
+  const labelTex = new THREE.CanvasTexture(labelCanvas);
+  labelTex.colorSpace = THREE.SRGBColorSpace;
+  labelTex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+  const label = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.6, 1.45),
+    new THREE.MeshStandardMaterial({ map: labelTex, transparent: true, roughness: 0.45, polygonOffset: true, polygonOffsetFactor: -2 })
+  );
+  label.position.set(0, 1.04, 0.31 + 0.031 + 0.002);
+
+  stick.add(dial, body, barra, capPivot, label);
+
+  // Sombra de contacto falsa (blob con gradiente radial)
+  const sc = document.createElement("canvas");
+  sc.width = sc.height = 128;
+  const sctx = sc.getContext("2d");
+  const grad = sctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+  grad.addColorStop(0, "rgba(37,30,24,0.5)");
+  grad.addColorStop(1, "rgba(37,30,24,0)");
+  sctx.fillStyle = grad;
+  sctx.fillRect(0, 0, 128, 128);
+  const shadowTex = new THREE.CanvasTexture(sc);
+  shadowTex.colorSpace = THREE.SRGBColorSpace;
+  const blobMat = new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false });
+  const blob = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 1.3), blobMat);
+  blob.rotation.x = -Math.PI / 2;
+  scene.add(blob);
+
+  const base = { x: 1.5, y: 0, s: 1 };
+  function layout() {
+    const w = innerWidth, h = innerHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
+    const halfW = halfH * camera.aspect;
+    if (w >= 860) {
+      base.s = Math.min(1.1, halfH / 2.3);
+      base.x = Math.min(halfW * 0.5, 3.4);
+      base.y = -0.05;
+    } else {
+      base.s = Math.min(0.6, (halfW * 0.62) / 1.36);
+      base.x = halfW * 0.5;
+      base.y = -halfH * 0.5;
+    }
+  }
+  layout();
+  addEventListener("resize", layout);
+
+  const timer = new Timer();
+  timer.connect?.(document);
+  let t = 0;
+
+  renderer.setAnimationLoop(() => {
+    timer.update();
+    const dt = Math.min(timer.getDelta(), 0.05);
+    if (!paused && !reduced) t += dt;
+
+    const amb = reduced ? 0 : Math.sin(t * 0.5) * 0.3;          // rotación ambiente (sine, loop)
+    const bob = reduced ? 0 : Math.sin(t * 0.8) * 0.035;        // respiración sutil
+    const s = base.s;
+    const sweep = Math.sin(state.swipe * Math.PI * 8) * 0.34 * state.lay; // 4 idas y vueltas
+
+    rig.scale.setScalar(s);
+    // out: en el cierre el stick baja y sale de cuadro para dejar libre el logo y el texto legal
+    const out = state.out * state.out * (3 - 2 * state.out);
+    rig.position.set(base.x + sweep * s, base.y + bob - (1 - state.intro) * 0.9 - out * 5, 0);
+    rig.rotation.set(0.1, -0.5 + amb * (1 - state.lay) + state.twist * 0.25, -state.lay * 1.05);
+
+    dial.rotation.y = state.twist * Math.PI * 3;
+    barra.position.y = BARRA_Y + state.rise * 0.46;
+    // La tapa sube, se inclina y se desvanece (si no, queda cortada contra el borde)
+    capPivot.position.set(state.cap * 0.55, CAP_Y + state.cap * 1.25, 0);
+    capPivot.rotation.z = -state.cap * 0.45;
+    const capFade = THREE.MathUtils.smoothstep(state.cap, 0.55, 1);
+    capMat.opacity = 1 - capFade;
+    capPivot.visible = capFade < 0.999;
+
+    blob.position.set(rig.position.x, rig.position.y - 1.62 * s, 0);
+    blob.scale.setScalar(s * (1 - state.lay * 0.3));
+    blobMat.opacity = (1 - state.lay * 0.85) * state.intro;
+
+    renderer.render(scene, camera);
+  });
+
+  return { bodyMat, barraMat, labelCtx, labelTex };
+}
+
+function refreshLabel() {
+  if (!three) return;
+  drawLabel(three.labelCtx, currentLine).then(() => { three.labelTex.needsUpdate = true; }).catch(() => {});
+}
+
+try {
+  three = initThree();
+  refreshLabel();
+} catch (err) {
+  console.warn("WebGL no disponible, se muestra el stick estático.", err);
+  root.classList.add("no-webgl");
+  canvas.hidden = true;
+}
+// "SUNSTICK" de la etiqueta usa Outfit: se redibuja cuando la fuente termina de cargar
+if (document.fonts) document.fonts.load("700 30px Outfit").then(refreshLabel).catch(() => {});
+
+/* ---------- Cambio de línea (color del stick + banda con trama) ---------- */
+const pickButtons = [...document.querySelectorAll("[data-pick]")];
+
+function setLine(key) {
+  if (key === currentLine || !LINES[key]) return;
+  currentLine = key;
+  root.dataset.line = key;
+  pickButtons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.pick === key)));
+  if (!three) return;
+  const dur = reduced ? 0 : 0.6;
+  const body = new THREE.Color(LINES[key].body);
+  const barra = new THREE.Color(LINES[key].barra);
+  gsap.to(three.bodyMat.color, { r: body.r, g: body.g, b: body.b, duration: dur, ease: "power2.inOut", overwrite: "auto" });
+  gsap.to(three.barraMat.color, { r: barra.r, g: barra.g, b: barra.b, duration: dur, ease: "power2.inOut", overwrite: "auto" });
+  refreshLabel();
+}
+pickButtons.forEach((b) => b.addEventListener("click", () => setLine(b.dataset.pick)));
+
+/* ---------- Visualización de la dosis ---------- */
+const passes = [...document.querySelectorAll(".pass")];
+const pips = [...document.querySelectorAll(".pips i")];
+const doseCount = document.getElementById("doseCount");
+let lastDone = -1;
+function updateDose() {
+  const p = state.swipe;
+  passes.forEach((el, i) => {
+    const pi = gsap.utils.clamp(0, 1, p * 4 - i);
+    el.style.strokeDashoffset = String(1 - pi);
+    el.style.visibility = pi > 0 ? "visible" : "hidden"; // el linecap redondo dejaba un punto antes de empezar
+  });
+  const done = Math.min(4, Math.floor(p * 4 + 1e-4));
+  if (done !== lastDone) {
+    lastDone = done;
+    pips.forEach((pip, i) => pip.classList.toggle("on", i < done));
+    doseCount.textContent = done === 4 ? "Pasadas: 4 de 4 · capa uniforme" : `Pasadas: ${done} de 4`;
+  }
+}
+
+/* ---------- Motion: GSAP + ScrollTrigger, con prefers-reduced-motion ---------- */
+const mm = gsap.matchMedia();
+let tramaTween = null;
+
+mm.add(
+  { motion: "(prefers-reduced-motion: no-preference)", reduce: "(prefers-reduced-motion: reduce)" },
+  (ctx) => {
+    reduced = ctx.conditions.reduce;
+    document.getElementById("motionToggle").hidden = reduced;
+
+    if (reduced) {
+      // Pose final estática: tapa afuera, barra arriba, dosis completa
+      Object.assign(state, { intro: 1, cap: 1, twist: 1, rise: 1, swipe: 1, lay: 0 });
+      updateDose();
+      return;
+    }
+
+    Object.assign(state, { intro: 0, cap: 0, twist: 0, rise: 0, swipe: 0, lay: 0 });
+    updateDose();
+
+    // Entrada del hero (Premium: power3.out, 0.6 s estándar, 1.1 s para el héroe)
+    const intro = gsap.timeline({ defaults: { duration: 0.6, ease: "power3.out" } });
+    intro
+      .from("#hero .topbar > *", { y: -12, opacity: 0, stagger: 0.08 })
+      .from("#hero .logo-svg", { y: 18, opacity: 0 }, 0.05)
+      .from("#hero h1 .ln", { yPercent: 35, opacity: 0, stagger: 0.09 }, 0.15)
+      .from("#hero .hero-in:not(.logo-svg)", { y: 16, opacity: 0, stagger: 0.08 }, 0.4)
+      .to(state, { intro: 1, duration: 1.1 }, 0.15);
+
+    // Hero: la tapa sale y la barra sube con twist-up (scrub ligado al scroll)
+    gsap.timeline({
+      scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 0.8 },
+    })
+      .to(state, { cap: 1, duration: 0.5, ease: "power2.inOut" })
+      .to(state, { twist: 1, rise: 1, duration: 0.5, ease: "power1.inOut" }, ">-0.1");
+
+    // Entradas de texto: arrancan visibles (opacity .35), nunca en 0
+    gsap.utils.toArray(".reveal").forEach((el) => {
+      gsap.from(el, {
+        y: 28, opacity: 0.35, duration: 0.6, ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none none" },
+      });
+    });
+    gsap.set(".benefit", { y: 18, opacity: 0.35 });
+    ScrollTrigger.batch(".benefit", {
+      start: "top 90%",
+      onEnter: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.06, overwrite: true }),
+    });
+
+    // Modo de uso: el stick se acuesta y hace 4 pasadas; el SVG dibuja cada pasada
+    gsap.timeline({
+      scrollTrigger: { trigger: "#uso", start: "top 65%", end: "bottom 45%", scrub: 0.6 },
+      onUpdate: updateDose,
+    })
+      .to(state, { lay: 1, duration: 0.15, ease: "sine.inOut" })
+      .to(state, { swipe: 1, duration: 0.7, ease: "none" }, 0.1)
+      .to(state, { lay: 0, duration: 0.15, ease: "sine.inOut" }, 0.85);
+
+    // Fondo vivo: la trama deriva lento a lo largo de un vector de la grilla (loop sin costura)
+    const s = tramaScale();
+    tramaTween = gsap.to(tramaLayers, { x: A[0] * s, y: A[1] * s, duration: 18, ease: "none", repeat: -1 });
+    if (paused) tramaTween.pause();
+
+    return () => { tramaTween = null; };
+  }
+);
+
+// Las líneas cambian al scrollear por cada tarjeta (también con movimiento reducido).
+// onEnter/onEnterBack (no onToggle): un salto de scroll dispara los onEnter en orden y deja la última línea.
+gsap.utils.toArray(".line-card").forEach((card) => {
+  ScrollTrigger.create({
+    trigger: card,
+    start: "top 55%",
+    end: "bottom 55%",
+    onEnter: () => setLine(card.dataset.key),
+    onEnterBack: () => setLine(card.dataset.key),
+  });
+});
+ScrollTrigger.create({
+  trigger: "#lineas", start: "top 55%",
+  onLeaveBack: () => setLine("classic"),
+});
+// Salida del stick al llegar al cierre (con movimiento reducido es un corte, sin recorrido)
+ScrollTrigger.create({
+  trigger: "#cierre", start: "top 95%", end: "top 35%",
+  onUpdate: (self) => { state.out = reduced ? (self.progress > 0.5 ? 1 : 0) : self.progress; },
+});
+
+// Pausa de las animaciones en loop (trama + rotación ambiente)
+const toggle = document.getElementById("motionToggle");
+toggle.addEventListener("click", () => {
+  paused = !paused;
+  toggle.setAttribute("aria-pressed", String(paused));
+  toggle.textContent = paused ? "Reanudar animación" : "Pausar animación";
+  if (tramaTween) paused ? tramaTween.pause() : tramaTween.resume();
+});
+
+if (document.fonts) document.fonts.ready.then(() => { ScrollTrigger.refresh(); buildTramas(); });
+</script>

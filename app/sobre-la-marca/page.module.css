@@ -1,0 +1,91 @@
+.mv {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px clamp(32px, 6vw, 120px);
+  padding-block: var(--section);
+}
+
+.mv > div {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  padding-top: 18px;
+  border-top: 1.5px solid var(--topo);
+}
+
+.statement {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.values {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.value {
+  display: grid;
+  align-content: end;
+  gap: 10px;
+  min-height: clamp(280px, 30vw, 420px);
+  padding: clamp(20px, 2.4vw, 32px);
+  border-radius: var(--radius-lg);
+  transition: transform 0.6s var(--ease-out), background-size 0.9s var(--ease-out);
+}
+.value:hover {
+  transform: translateY(-6px);
+  background-size: 260px auto;
+}
+.value h3 {
+  font-size: var(--fs-xl);
+}
+.value p {
+  max-width: 34ch;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+.value:global(.trama-naranja) {
+  color: var(--blanco);
+}
+
+.renders {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: clamp(10px, 1.2vw, 16px);
+  height: clamp(280px, 34vw, 520px);
+}
+
+.cta {
+  display: inline-flex;
+  gap: 0.4em;
+  margin-top: clamp(40px, 5vw, 72px);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  transition: color 0.3s, gap 0.5s var(--ease-out);
+}
+.cta:hover {
+  color: var(--naranja);
+  gap: 0.7em;
+}
+
+@media (max-width: 860px) {
+  .mv,
+  .values {
+    grid-template-columns: 1fr;
+  }
+  .renders {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .renders > * {
+    min-height: 240px;
+  }
+}

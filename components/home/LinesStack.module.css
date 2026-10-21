@@ -1,0 +1,41 @@
+.section {
+  padding-bottom: var(--section);
+}
+
+.stack {
+  display: grid;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+/* cada banner queda fijo debajo del header y el siguiente lo tapa */
+.slot {
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+}
+
+.slot > * {
+  will-change: transform;
+  box-shadow: 0 -24px 48px -32px rgba(37, 30, 24, 0.35);
+}
+
+.pill {
+  background: var(--bg);
+  color: var(--fg);
+  opacity: 0.55;
+  transition: opacity 0.3s, transform 0.4s var(--ease-out);
+}
+.pill:hover,
+.pill[data-active] {
+  opacity: 1;
+}
+.pill[data-active] {
+  transform: translateY(-2px);
+}
+
+/* en pantallas bajas el banner no entra entero: sin apilado para no tapar su contenido */
+@media (max-width: 860px), (max-height: 700px) {
+  .slot {
+    position: relative;
+    top: auto;
+  }
+}
