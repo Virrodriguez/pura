@@ -1,21 +1,30 @@
 .section {
+  padding-top: 8px;
   padding-bottom: var(--section);
 }
 
 .stack {
+  position: relative;
   display: grid;
   gap: clamp(10px, 1.2vw, 16px);
 }
 
-/* cada banner queda fijo debajo del header y el siguiente lo tapa */
-.slot {
-  position: sticky;
-  top: calc(var(--header-h) + 16px);
+/* Modo apilado (lo activa GSAP): las líneas 2 y 3 se superponen a la 1 y entran desde abajo */
+.stack[data-stacked] {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
 }
-
-.slot > * {
+.stack[data-stacked] .slot {
   will-change: transform;
-  box-shadow: 0 -24px 48px -32px rgba(37, 30, 24, 0.35);
+}
+.stack[data-stacked] .slot + .slot {
+  position: absolute;
+  inset: 0;
+}
+.stack[data-stacked] .slot + .slot > * {
+  height: 100%;
+  box-shadow: 0 -28px 50px -30px rgba(37, 30, 24, 0.35);
 }
 
 .pill {
@@ -30,12 +39,4 @@
 }
 .pill[data-active] {
   transform: translateY(-2px);
-}
-
-/* en pantallas bajas el banner no entra entero: sin apilado para no tapar su contenido */
-@media (max-width: 860px), (max-height: 700px) {
-  .slot {
-    position: relative;
-    top: auto;
-  }
 }
