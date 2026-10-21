@@ -14,6 +14,8 @@ export type Line = {
   /** color del texto sobre el panel */
   ink: string;
   intro: string;
+  /** frase grande del home que se enciende palabra por palabra con el scroll */
+  statement: string;
   detail: string;
   features: Feature[];
   /** imágenes de la galería vertical en /nuestras-lineas (null = render pendiente) */
@@ -38,6 +40,8 @@ export const lines: Line[] = [
     ink: "var(--topo)",
     intro:
       "Protección diaria para todo tipo de piel. Se desliza sin arrastre, no deja residuo blanco y aporta luminosidad.",
+    statement:
+      "Protección diaria para todo tipo de piel. Una barra que se desliza sin arrastre, no deja residuo blanco y entra en tu bolsillo para reaplicar en cualquier momento del día.",
     detail:
       "Nuestra barra original: filtros minerales de amplio espectro en una base de ceras y emolientes de origen natural. Pensada para llevar todos los días y reaplicar sin pensarlo.",
     features,
@@ -52,6 +56,8 @@ export const lines: Line[] = [
     ink: "var(--topo)",
     intro:
       "Fórmula suave, sin fragancia, para pieles reactivas. Calma mientras protege, incluso en el contorno de ojos.",
+    statement:
+      "Una fórmula suave y sin fragancia para pieles reactivas. Calma mientras protege, incluso en las zonas más delicadas: contorno de ojos, nariz y orejas.",
     detail:
       "Menos ingredientes, elegidos uno por uno. Una barra hipoalergénica que cuida las zonas más delicadas del rostro: contorno de ojos, nariz y orejas.",
     features,
@@ -66,6 +72,8 @@ export const lines: Line[] = [
     ink: "var(--blanco)",
     intro:
       "Protección con un toque de color que unifica el tono y deja un acabado natural y saludable.",
+    statement:
+      "Protección con un toque de color mineral que unifica el tono y deja un acabado natural y luminoso, como una segunda piel bajo el sol.",
     detail:
       "Pigmentos minerales que se funden con la piel. Protege, empareja el tono y reemplaza la base en los días de sol.",
     features,
