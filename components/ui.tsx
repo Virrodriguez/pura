@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { gsap, useGSAP, ScrollTrigger, MQ } from "@/lib/gsap";
 import styles from "./ui.module.css";
@@ -36,11 +37,30 @@ export function SectionHead({
 }
 
 /** Cabecera de página interna: eyebrow, título grande en líneas enmascaradas y bajada. */
-export function PageHead({ eyebrow, lines, lead }: { eyebrow: string; lines: string[]; lead?: string }) {
+export function PageHead({
+  eyebrow,
+  lines,
+  lead,
+  crumbs = [],
+}: {
+  eyebrow: string;
+  lines: string[];
+  lead?: string;
+  /** pasos intermedios de la ruta (Inicio se agrega solo) */
+  crumbs?: { href: string; label: string }[];
+}) {
   const ref = useRef<HTMLElement>(null);
   useReveal(ref);
   return (
     <header ref={ref} className={`container ${styles.pageHead}`}>
+      <nav aria-label="Ruta de navegación" className={styles.crumbs}>
+        <Link href="/">← Inicio</Link>
+        {crumbs.map((c) => (
+          <span key={c.href}>
+            <span aria-hidden="true">/</span> <Link href={c.href}>{c.label}</Link>
+          </span>
+        ))}
+      </nav>
       <p className="eyebrow" data-reveal>
         {eyebrow}
       </p>

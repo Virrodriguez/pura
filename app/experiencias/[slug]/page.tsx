@@ -32,6 +32,7 @@ export default async function ExperienciaPage({ params }: { params: Promise<Para
         eyebrow={`Experiencia ${String(index + 1).padStart(2, "0")} / ${String(experiences.length).padStart(2, "0")}`}
         lines={[exp.title]}
         lead={exp.subtitle}
+        crumbs={[{ href: "/experiencias", label: "Experiencias" }]}
       />
 
       <section className="container">

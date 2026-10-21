@@ -12,9 +12,19 @@
   display: grid;
   place-items: center;
   opacity: 0;
-  visibility: hidden;
   transition: width 0.4s var(--ease-out), height 0.4s var(--ease-out), margin 0.4s var(--ease-out),
-    background-color 0.3s;
+    background-color 0.3s, opacity 0.3s;
+}
+
+.cursor[data-visible] {
+  opacity: 1;
+}
+
+/* en pantallas táctiles no hay cursor */
+@media not all and (hover: hover) and (pointer: fine) {
+  .cursor {
+    display: none;
+  }
 }
 
 .cursor[data-mode="hover"] {

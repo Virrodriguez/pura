@@ -3,6 +3,7 @@
 
 # build de Next.js
 /.next/
+/.next-check/
 /out/
 /build
 

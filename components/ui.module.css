@@ -25,6 +25,23 @@
   padding-bottom: clamp(40px, 6vw, 88px);
 }
 
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-bottom: 8px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--topo-60);
+}
+.crumbs a {
+  color: var(--topo);
+  transition: color 0.3s;
+}
+.crumbs a:hover {
+  color: var(--naranja);
+}
+
 .pageTitle {
   font-size: var(--fs-3xl);
   letter-spacing: -0.045em;
