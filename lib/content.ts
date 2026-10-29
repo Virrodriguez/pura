@@ -79,7 +79,7 @@ export const lines: Line[] = [
     features,
     card: "Pigmentos minerales que se funden con la piel. Protege, empareja el tono y reemplaza la base en los días de sol.",
     render: { cap: "/img/lineas/con-color-tapa.png", body: "/img/lineas/con-color-cuerpo.png" },
-    gallery: ["/img/renders/con-color.png", "/img/renders/caja-con-color.png", "/img/renders/tres-lineas-2.png"],
+    gallery: ["/img/renders/con-color.png", "/img/renders/caja-con-color.png", "/img/renders/con-color-chica.jpg"],
   },
 ];
 
