@@ -39,6 +39,15 @@
 .logo:hover {
   transform: translateY(-2px);
 }
+/* sin el recuadro naranja de foco; con teclado se indica subiendo y aclarando el logo */
+.logo:focus,
+.logo:focus-visible {
+  outline: none;
+}
+.logo:focus-visible {
+  transform: translateY(-2px);
+  opacity: 0.7;
+}
 
 /* Hamburguesa: tres líneas escalonadas que se cruzan en X */
 .toggle {
