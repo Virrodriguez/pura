@@ -116,12 +116,18 @@ export type Experience = {
   body: string;
   /** URL del video (se completa más adelante) */
   video: string | null;
+  /** imagen de la card (null = trama del color) */
+  image?: string;
+  /** fragmento corto que se reproduce en la card al hacer click */
+  clip?: string;
   accent: string;
 };
 
 export const experiences: Experience[] = [
   {
     slug: "turnaround",
+    image: "/img/experiencias/turnaround.png",
+    clip: "/video/turnaround-fragmento.mp4",
     title: "Turnaround",
     subtitle: "El stick, desde todos los ángulos",
     summary: "Girá el producto 360° y descubrí cada detalle de la barra, la tapa y el mecanismo twist-up.",

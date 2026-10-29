@@ -27,6 +27,11 @@ Sitio de PURA – Protección Solar Natural (protector solar facial en barra). N
 - No dejar `transform` en ancestros de elementos con `position: sticky` o pin (usar `clearProps`).
 - Lenis está en `window.__lenis` (pararlo al abrir overlays).
 
+## Videos
+- FFmpeg está instalado. Los .avi/.mov de render se convierten a MP4 H.264 liviano, p. ej.:
+  `ffmpeg -i entrada.avi -t 4.5 -an -c:v libx264 -preset slow -crf 24 -pix_fmt yuv420p -movflags +faststart public/video/salida.mp4`
+- Fragmentos de las cards de experiencias: campo `clip` en `experiences` (se reproducen al hover; en táctil, al entrar en pantalla).
+
 ## Contenido pendiente de la marca
 - Videos de las 4 experiencias (`experiences[].video` en `lib/content.ts`).
 - Renders del producto y fotos por línea (`lines[].gallery`).

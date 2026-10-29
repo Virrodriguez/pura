@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap, useGSAP, MQ } from "@/lib/gsap";
 import type { Experience } from "@/lib/content";
 import { ArrowBadge } from "./ui";
@@ -11,10 +12,16 @@ import styles from "./ExperienceCard.module.css";
  * Card de experiencia. Motion centrado en el hover (no en el scroll):
  * la imagen se inclina siguiendo al mouse, la trama se desplaza,
  * la flecha gira y el cursor muestra "Ver".
+ * Si la experiencia tiene `clip`, al pasar el mouse se reproduce un fragmento
+ * corto sobre la imagen y al salir vuelve a la imagen (en pantallas táctiles se
+ * reproduce cuando la card entra en pantalla). El click lleva a la experiencia.
  */
 export default function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
   const trama = ["trama-amarilla", "trama-celeste", "trama-naranja", "trama-amarilla"][index % 4];
+  const href = `/experiencias/${exp.slug}`;
 
   useGSAP(
     () => {
@@ -49,22 +56,83 @@ export default function ExperienceCard({ exp, index }: { exp: Experience; index:
     { scope: ref }
   );
 
-  return (
-    <Link ref={ref} href={`/experiencias/${exp.slug}`} className={styles.card} data-cursor="Ver">
-      <div className={styles.frame}>
-        <div className={`${styles.media} ${trama}`}>
-          <span className={styles.glow} aria-hidden="true" />
-          <span className={styles.badge}>Video próximamente</span>
-          <span className={styles.index} aria-hidden="true">
-            {String(index + 1).padStart(2, "0")}
+  const playClip = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.play()
+      .then(() => setPlaying(true))
+      .catch(() => setPlaying(false));
+  };
+  const stopClip = () => {
+    videoRef.current?.pause();
+    setPlaying(false);
+  };
+
+  // Táctil (sin hover): el fragmento se reproduce cuando la card entra en pantalla
+  useEffect(() => {
+    const el = ref.current;
+    if (!exp.clip || !el || window.matchMedia(MQ.fine).matches || window.matchMedia(MQ.reduce).matches) return;
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? playClip() : stopClip()), { threshold: 0.6 });
+    io.observe(el);
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exp.clip]);
+
+  const media = (
+    <div className={styles.frame}>
+      <div className={`${styles.media} ${exp.image ? "" : trama}`} data-playing={playing || undefined}>
+        {exp.image ? (
+          <Image className={styles.img} src={exp.image} alt="" fill sizes="(max-width: 760px) 100vw, 50vw" />
+        ) : null}
+        {exp.clip ? (
+          <video
+            ref={videoRef}
+            className={styles.clip}
+            src={exp.clip}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          />
+        ) : null}
+        <span className={styles.glow} aria-hidden="true" />
+        {exp.clip ? (
+          <span className={styles.badge} aria-hidden="true">
+            Giro 360°
           </span>
-        </div>
+        ) : exp.image ? null : (
+          <span className={styles.badge}>Video próximamente</span>
+        )}
+        <span className={styles.index} aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
       </div>
+    </div>
+  );
+
+  const text = (
+    <>
       <div className={styles.row}>
         <h3 className={styles.title}>{exp.title}</h3>
         <ArrowBadge className={styles.arrow} />
       </div>
       <p className={styles.summary}>{exp.summary}</p>
+    </>
+  );
+
+  return (
+    <Link
+      ref={ref as React.RefObject<HTMLAnchorElement>}
+      href={href}
+      className={styles.card}
+      data-cursor="Ver"
+      onPointerEnter={exp.clip ? (e) => e.pointerType !== "touch" && playClip() : undefined}
+      onPointerLeave={exp.clip ? (e) => e.pointerType !== "touch" && stopClip() : undefined}
+    >
+      {media}
+      {text}
     </Link>
   );
 }
