@@ -29,10 +29,16 @@
   will-change: transform;
 }
 
-.pattern {
-  --px: 0;
-  --py: 0;
-  background-position: calc(var(--px) * 1px) calc(var(--py) * 1px);
+/* render de los tres protectores: fondo gris claro del estudio para que no se note el borde al moverse */
+.productTile {
+  background: #dfdedd;
+}
+
+.product {
+  object-fit: cover;
+  object-position: 50% 62%;
+  scale: 1.06;
+  will-change: transform;
 }
 
 .wide {

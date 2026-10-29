@@ -38,18 +38,27 @@ export default function Gallery() {
         });
       });
 
-      // la trama se desplaza siguiendo el mouse
+      // el render de los tres protectores sigue levemente al mouse
       mm.add(`${MQ.motion} and ${MQ.fine}`, () => {
-        const pat = ref.current!.querySelector<HTMLElement>(`.${styles.pattern}`)!;
-        const x = gsap.quickTo(pat, "--px", { duration: 1.2, ease: "power3" });
-        const y = gsap.quickTo(pat, "--py", { duration: 1.2, ease: "power3" });
+        const tile = ref.current!.querySelector<HTMLElement>(`.${styles.productTile}`)!;
+        const img = tile.querySelector<HTMLElement>(`.${styles.product}`)!;
+        const x = gsap.quickTo(img, "x", { duration: 1.2, ease: "power3" });
+        const y = gsap.quickTo(img, "y", { duration: 1.2, ease: "power3" });
         const move = (e: PointerEvent) => {
-          const r = pat.getBoundingClientRect();
-          x(((e.clientX - r.left) / r.width - 0.5) * -60);
-          y(((e.clientY - r.top) / r.height - 0.5) * -60);
+          const r = tile.getBoundingClientRect();
+          x(((e.clientX - r.left) / r.width - 0.5) * -24);
+          y(((e.clientY - r.top) / r.height - 0.5) * -18);
         };
-        pat.addEventListener("pointermove", move);
-        return () => pat.removeEventListener("pointermove", move);
+        const leave = () => {
+          x(0);
+          y(0);
+        };
+        tile.addEventListener("pointermove", move);
+        tile.addEventListener("pointerleave", leave);
+        return () => {
+          tile.removeEventListener("pointermove", move);
+          tile.removeEventListener("pointerleave", leave);
+        };
       });
       return () => mm.revert();
     },
@@ -68,7 +77,15 @@ export default function Gallery() {
             className={styles.photo}
           />
         </figure>
-        <div className={`${styles.tile} ${styles.pattern} trama-amarilla`} aria-hidden="true" />
+        <figure className={`${styles.tile} ${styles.productTile}`}>
+          <Image
+            src="/img/renders/tres-lineas.png"
+            alt="Los tres SUNBAR de PURA: Pieles sensibles, Clásica y Con color"
+            fill
+            sizes="(max-width: 860px) 100vw, 50vw"
+            className={styles.product}
+          />
+        </figure>
       </div>
       <div className={`${styles.tile} ${styles.wide} trama-naranja`}>
         <p className={styles.marquee} aria-label="Reaplicá cada 2 horas">

@@ -47,7 +47,7 @@ export const lines: Line[] = [
     features,
     card: "Filtros minerales en una barra que se desliza sin arrastre. Sin residuo blanco, para usar todos los días.",
     render: { cap: "/img/lineas/clasica-tapa.png", body: "/img/lineas/clasica-cuerpo.png" },
-    gallery: [null, "/img/chica.png", null],
+    gallery: ["/img/renders/clasica.png", "/img/renders/caja-clasica.png", "/img/chica.png"],
   },
   {
     id: "pieles-sensibles",
@@ -63,7 +63,7 @@ export const lines: Line[] = [
     features,
     card: "Fórmula suave y sin fragancia para pieles reactivas. Calma mientras protege, incluso en el contorno de ojos.",
     render: { cap: "/img/lineas/pieles-sensibles-tapa.png", body: "/img/lineas/pieles-sensibles-cuerpo.png" },
-    gallery: [null, null, null],
+    gallery: ["/img/renders/pieles-sensibles.png", "/img/renders/caja-pieles-sensibles.png", "/img/renders/tres-tapas-vuelan.png"],
   },
   {
     id: "con-color",
@@ -79,7 +79,7 @@ export const lines: Line[] = [
     features,
     card: "Pigmentos minerales que se funden con la piel. Protege, empareja el tono y reemplaza la base en los días de sol.",
     render: { cap: "/img/lineas/con-color-tapa.png", body: "/img/lineas/con-color-cuerpo.png" },
-    gallery: [null, null, null],
+    gallery: ["/img/renders/con-color.png", "/img/renders/caja-con-color.png", "/img/renders/tres-lineas-2.png"],
   },
 ];
 

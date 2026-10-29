@@ -15,3 +15,6 @@ npm-debug.log*
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+
+# originales de render (copias optimizadas en public/img/renders)
+/Renders/
