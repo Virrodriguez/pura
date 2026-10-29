@@ -63,7 +63,7 @@ export const lines: Line[] = [
     features,
     card: "Fórmula suave y sin fragancia para pieles reactivas. Calma mientras protege, incluso en el contorno de ojos.",
     render: { cap: "/img/lineas/pieles-sensibles-tapa.png", body: "/img/lineas/pieles-sensibles-cuerpo.png" },
-    gallery: ["/img/renders/pieles-sensibles.png", "/img/renders/caja-pieles-sensibles.png", "/img/renders/pieles-sensibles-chica.jpg"],
+    gallery: ["/img/renders/pieles-sensibles.png", "/img/renders/caja-pieles-sensibles.png", "/img/renders/pieles-sensibles-chica-2.jpg"],
   },
   {
     id: "con-color",
