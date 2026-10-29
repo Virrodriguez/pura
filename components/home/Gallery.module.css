@@ -41,16 +41,19 @@
   will-change: transform;
 }
 
+/* banner fino: largo y poco alto, la altura la da el texto */
 .wide {
-  aspect-ratio: 16 / 7.4;
+  aspect-ratio: auto;
   display: flex;
   align-items: center;
+  padding-block: clamp(14px, 1.8vw, 28px);
 }
 
 .marquee {
   display: flex;
   white-space: nowrap;
-  font-size: var(--fs-3xl);
+  font-size: clamp(2rem, 1.2rem + 3.4vw, 5rem);
+  padding-bottom: 0.08em; /* lugar para el descendente de la "p" */
   font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 1;
@@ -64,8 +67,5 @@
 @media (max-width: 860px) {
   .row {
     grid-template-columns: 1fr;
-  }
-  .wide {
-    aspect-ratio: 4 / 3;
   }
 }
