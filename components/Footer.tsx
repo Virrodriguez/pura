@@ -36,22 +36,25 @@ export default function Footer() {
   return (
     <footer ref={ref} className={styles.footer} id="contacto">
       <div className="container">
-        <ul className={styles.big}>
-          {footerLinks.map((l) => (
-            <li key={l.label}>
-              <a href={l.href}>
-                <span>{l.label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* páginas del sitio en grande; contacto y compra como links chicos */}
+        <nav aria-label="Secciones">
+          <ul className={styles.big}>
+            {nav.map((n) => (
+              <li key={n.href}>
+                <Link href={n.href}>
+                  <span>{n.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <div className={styles.row}>
-          <nav aria-label="Pie de página" className={styles.nav}>
-            {nav.map((n) => (
-              <Link key={n.href} href={n.href}>
-                {n.label}
-              </Link>
+          <nav aria-label="Contacto" className={styles.nav}>
+            {footerLinks.map((l) => (
+              <a key={l.label} href={l.href}>
+                {l.label}
+              </a>
             ))}
           </nav>
           <p className={styles.legal}>© {new Date().getFullYear()} PURA · Protección solar natural</p>
