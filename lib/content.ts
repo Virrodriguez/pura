@@ -116,6 +116,9 @@ export type Experience = {
   body: string;
   /** URL del video (se completa más adelante) */
   video: string | null;
+  /** portada del video principal y color de fondo para los costados (video vertical) */
+  poster?: string;
+  backdrop?: string;
   /** imagen de la card (null = trama del color) */
   image?: string;
   /** fragmento corto que se reproduce en la card al hacer click */
@@ -133,7 +136,9 @@ export const experiences: Experience[] = [
     summary: "Girá el producto 360° y descubrí cada detalle de la barra, la tapa y el mecanismo twist-up.",
     body:
       "Un recorrido completo alrededor del SUNSTICK: la forma ovalada de la barra, la textura del envase y cómo sube y baja con un giro de la base.",
-    video: null,
+    video: "/video/turnaround.mp4",
+    poster: "/img/experiencias/turnaround-poster.jpg",
+    backdrop: "linear-gradient(#C2C1BC, #CDCDC8)",
     accent: "var(--amarillo)",
   },
   {

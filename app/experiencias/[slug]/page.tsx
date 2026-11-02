@@ -36,7 +36,7 @@ export default async function ExperienciaPage({ params }: { params: Promise<Para
       />
 
       <section className="container">
-        <ExperienceVideo src={exp.video} title={exp.title} accent={exp.accent} />
+        <ExperienceVideo src={exp.video} title={exp.title} accent={exp.accent} poster={exp.poster} backdrop={exp.backdrop} />
         <div className={styles.body}>
           <p>{exp.body}</p>
           <Link href="/experiencias" className="pill">
