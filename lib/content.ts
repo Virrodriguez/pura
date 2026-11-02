@@ -123,6 +123,8 @@ export type Experience = {
   videos?: { title: string; body: string; src: string; poster: string }[];
   /** URL para incrustar (iframe), p. ej. un recorrido 360° de Kuula; reemplaza al video principal */
   embed?: string;
+  /** escena de Spline publicada (…/scene.splinecode); reemplaza al video principal */
+  spline?: string;
   /** imagen de la card (null = trama del color) */
   image?: string;
   /** fragmento corto que se reproduce en la card al hacer click */
@@ -147,6 +149,9 @@ export const experiences: Experience[] = [
   },
   {
     slug: "3d-interactivo",
+    image: "/img/experiencias/3d-interactivo.jpg",
+    // pegar acá la URL de "Code export" de Spline cuando la escena esté publicada
+    spline: "not-exported-yet",
     title: "3D interactivo",
     subtitle: "Abrilo, giralo, usalo",
     summary: "Manipulá el stick en 3D: sacale la tapa, girá la base y mirá cómo aparece la barra.",

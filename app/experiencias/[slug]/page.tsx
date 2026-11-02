@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { experiences } from "@/lib/content";
 import { PageHead } from "@/components/ui";
 import ExperienceVideo from "@/components/ExperienceVideo";
+import SplineEmbed from "@/components/SplineEmbed";
 import styles from "./page.module.css";
 
 type Params = { slug: string };
@@ -36,7 +37,9 @@ export default async function ExperienciaPage({ params }: { params: Promise<Para
       />
 
       <section className="container">
-        {exp.embed ? (
+        {exp.spline !== undefined ? (
+          <SplineEmbed url={exp.spline} poster={exp.image ?? "/img/experiencias/3d-interactivo.jpg"} title={exp.title} />
+        ) : exp.embed ? (
           <div className={styles.embed}>
             <iframe
               src={exp.embed}
