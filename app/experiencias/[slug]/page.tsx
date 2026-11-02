@@ -36,7 +36,18 @@ export default async function ExperienciaPage({ params }: { params: Promise<Para
       />
 
       <section className="container">
-        {exp.videos ? (
+        {exp.embed ? (
+          <div className={styles.embed}>
+            <iframe
+              src={exp.embed}
+              title={`${exp.title}: recorrido 360°`}
+              allow="xr-spatial-tracking; gyroscope; accelerometer; fullscreen"
+              allowFullScreen
+              loading="lazy"
+              data-lenis-prevent
+            />
+          </div>
+        ) : exp.videos ? (
           <div className={styles.videos}>
             {exp.videos.map((v) => (
               <article key={v.src} className={styles.videoCard}>

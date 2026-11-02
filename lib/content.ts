@@ -121,6 +121,8 @@ export type Experience = {
   backdrop?: string;
   /** varios videos en cards una al lado de la otra (reemplazan al video principal) */
   videos?: { title: string; body: string; src: string; poster: string }[];
+  /** URL para incrustar (iframe), p. ej. un recorrido 360° de Kuula; reemplaza al video principal */
+  embed?: string;
   /** imagen de la card (null = trama del color) */
   image?: string;
   /** fragmento corto que se reproduce en la card al hacer click */
@@ -155,14 +157,25 @@ export const experiences: Experience[] = [
   },
   {
     slug: "vr-360",
-    image: "/img/experiencias/vr-360.jpg",
+    title: "VR-360",
+    subtitle: "Recorré el estudio PURA",
+    summary: "Mirá a tu alrededor en una escena 360°: las tres líneas, sus cajas y cada detalle del SUNBAR.",
+    body:
+      "Hacé click y arrastrá para mirar en todas las direcciones. Cambiá de escena desde las miniaturas o abrilo en pantalla completa.",
+    video: null,
+    embed: "https://kuula.co/share/collection/7dqcF?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1",
+    accent: "var(--naranja)",
+  },
+  {
+    slug: "realidad-aumentada",
+    image: "/img/experiencias/realidad-aumentada.jpg",
     clip: "/video/ra-superficie-fragmento.mp4",
     videos: [
       {
         title: "RA — Filtro facial",
         body: "Filtro de realidad aumentada que proyecta el packaging octogonal sobre el rostro del usuario.",
         src: "/video/ra-filtro-facial.mp4",
-        poster: "/img/experiencias/ra-filtro-facial-poster.jpg",
+        poster: "/img/experiencias/ra-filtro-facial-poster-final.jpg",
       },
       {
         title: "RA — Superficie real",
@@ -171,21 +184,11 @@ export const experiences: Experience[] = [
         poster: "/img/experiencias/ra-superficie-poster.jpg",
       },
     ],
-    title: "VR-360",
-    subtitle: "Un día al sol con PURA",
-    summary: "Entrá en una escena inmersiva y acompañá un día completo de protección y reaplicación.",
-    body:
-      "De la ciudad a la playa: una experiencia en 360° que muestra cuándo y dónde reaplicar a lo largo del día.",
-    video: null,
-    accent: "var(--naranja)",
-  },
-  {
-    slug: "realidad-aumentada",
     title: "Realidad aumentada",
-    subtitle: "PURA en tu mano",
-    summary: "Llevá el stick a tu espacio con la cámara del celular y mirá su tamaño real.",
+    subtitle: "PURA en tu espacio",
+    summary: "Probá el filtro facial y ubicá el estuche a escala real sobre cualquier superficie con la cámara del celular.",
     body:
-      "Proyectá el producto en tu mano o sobre la mesa para ver su escala real y elegir tu línea antes de comprarla.",
+      "Dos experiencias de realidad aumentada para ver el producto en tu propio entorno antes de elegir tu línea.",
     video: null,
     accent: "var(--amarillo)",
   },
