@@ -41,8 +41,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" className={gilroy.variable}>
-      <body>
+    // suppressHydrationWarning: extensiones del navegador (traductores, gestores de contraseñas) agregan
+    // atributos a <html>/<body> y Next lo reporta como error de hidratación
+    <html lang="es-AR" className={gilroy.variable} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <a href="#contenido" className="sr-only">
           Saltar al contenido
         </a>
