@@ -5,6 +5,9 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { nav } from "@/lib/content";
+
+// el menú suma "Inicio" a las secciones del sitio
+const menuItems = [{ href: "/", label: "Inicio" }, ...nav];
 import { Logotipo } from "./Logo";
 import styles from "./Header.module.css";
 
@@ -113,7 +116,7 @@ export default function Header() {
       <div id="menu" ref={menuRef} className={styles.menu} aria-hidden={!open} inert={!open}>
         <nav aria-label="Principal" className={styles.nav}>
           <ul>
-            {nav.map((item) => {
+            {menuItems.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
               return (
                 <li key={item.href} className={styles.item}>

@@ -167,6 +167,9 @@ export const experiences: Experience[] = [
   },
   {
     slug: "vr-360",
+    image: "/img/experiencias/vr-360-portada.jpg",
+    clip: "/video/vr-360-fragmento.mp4",
+    badge: "Recorrido 360°",
     title: "VR-360",
     subtitle: "Recorré el estudio PURA",
     summary: "Mirá a tu alrededor en una escena 360°: las tres líneas, sus cajas y cada detalle del SUNBAR.",
