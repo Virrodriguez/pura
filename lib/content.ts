@@ -47,7 +47,7 @@ export const lines: Line[] = [
     features,
     card: "Filtros minerales en una barra que se desliza sin arrastre. Sin residuo blanco, para usar todos los días.",
     render: { cap: "/img/lineas/clasica-tapa-hd.png", body: "/img/lineas/clasica-cuerpo-hd.png" },
-    gallery: ["/img/renders/clasica.png", "/img/renders/caja-clasica.png", "/img/renders/clasica-chica-2.jpg"],
+    gallery: ["/img/renders/clasica.png", "/img/renders/caja-clasica.png", "/img/renders/clasica-chica-3.jpg"],
   },
   {
     id: "pieles-sensibles",
