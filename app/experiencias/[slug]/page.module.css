@@ -42,3 +42,36 @@
 .next:hover .nextTitle span {
   transform: translateX(0.2em);
 }
+
+/* varios videos (RA): cards verticales una al lado de la otra */
+.videos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 420px));
+  justify-content: center;
+  gap: clamp(16px, 3vw, 48px);
+}
+
+.videoCard {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.videoTitle {
+  margin-top: 10px;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
+}
+
+.videoBody {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--topo-2);
+  max-width: 42ch;
+}
+
+@media (max-width: 640px) {
+  .videos {
+    grid-template-columns: minmax(0, 420px);
+  }
+}

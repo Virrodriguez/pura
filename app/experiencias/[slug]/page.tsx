@@ -36,7 +36,19 @@ export default async function ExperienciaPage({ params }: { params: Promise<Para
       />
 
       <section className="container">
-        <ExperienceVideo src={exp.video} title={exp.title} accent={exp.accent} poster={exp.poster} backdrop={exp.backdrop} />
+        {exp.videos ? (
+          <div className={styles.videos}>
+            {exp.videos.map((v) => (
+              <article key={v.src} className={styles.videoCard}>
+                <ExperienceVideo src={v.src} title={v.title} accent={exp.accent} poster={v.poster} ratio="9 / 16" />
+                <h2 className={styles.videoTitle}>{v.title}</h2>
+                <p className={styles.videoBody}>{v.body}</p>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <ExperienceVideo src={exp.video} title={exp.title} accent={exp.accent} poster={exp.poster} backdrop={exp.backdrop} />
+        )}
         <div className={styles.body}>
           <p>{exp.body}</p>
           <Link href="/experiencias" className="pill">

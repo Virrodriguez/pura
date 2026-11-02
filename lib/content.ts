@@ -119,6 +119,8 @@ export type Experience = {
   /** portada del video principal y color de fondo para los costados (video vertical) */
   poster?: string;
   backdrop?: string;
+  /** varios videos en cards una al lado de la otra (reemplazan al video principal) */
+  videos?: { title: string; body: string; src: string; poster: string }[];
   /** imagen de la card (null = trama del color) */
   image?: string;
   /** fragmento corto que se reproduce en la card al hacer click */
@@ -153,6 +155,22 @@ export const experiences: Experience[] = [
   },
   {
     slug: "vr-360",
+    image: "/img/experiencias/vr-360.jpg",
+    clip: "/video/ra-superficie-fragmento.mp4",
+    videos: [
+      {
+        title: "RA — Filtro facial",
+        body: "Filtro de realidad aumentada que proyecta el packaging octogonal sobre el rostro del usuario.",
+        src: "/video/ra-filtro-facial.mp4",
+        poster: "/img/experiencias/ra-filtro-facial-poster.jpg",
+      },
+      {
+        title: "RA — Superficie real",
+        body: "Realidad aumentada de superficie: el estuche aparece a escala real sobre cualquier mesa.",
+        src: "/video/ra-superficie-real.mp4",
+        poster: "/img/experiencias/ra-superficie-poster.jpg",
+      },
+    ],
     title: "VR-360",
     subtitle: "Un día al sol con PURA",
     summary: "Entrá en una escena inmersiva y acompañá un día completo de protección y reaplicación.",

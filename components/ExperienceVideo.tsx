@@ -16,12 +16,15 @@ export default function ExperienceVideo({
   accent,
   poster,
   backdrop,
+  ratio = "16 / 9",
 }: {
   src: string | null;
   title: string;
   accent: string;
   poster?: string;
   backdrop?: string;
+  /** proporción del marco (los videos verticales de RA usan "9 / 16") */
+  ratio?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -44,7 +47,12 @@ export default function ExperienceVideo({
     const v = videoRef.current;
     if (!v) return;
     setStarted(true);
-    v.play().catch(() => setStarted(false));
+    // intenta con sonido; si el navegador lo bloquea, arranca en silencio (se activa desde los controles)
+    v.muted = false;
+    v.play().catch(() => {
+      v.muted = true;
+      v.play().catch(() => setStarted(false));
+    });
   };
 
   const playButton = (
@@ -64,7 +72,7 @@ export default function ExperienceVideo({
       className={src ? undefined : trama}
       style={{
         position: "relative",
-        aspectRatio: "16 / 9",
+        aspectRatio: ratio,
         borderRadius: "var(--radius-lg)",
         overflow: "hidden",
         display: "grid",
@@ -79,7 +87,6 @@ export default function ExperienceVideo({
             src={src}
             poster={poster}
             controls={started}
-            muted
             playsInline
             preload="metadata"
             aria-label={title}
