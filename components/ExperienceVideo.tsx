@@ -77,7 +77,7 @@ export default function ExperienceVideo({
         overflow: "hidden",
         display: "grid",
         placeItems: "center",
-        background: src ? backdrop ?? "var(--topo)" : undefined,
+        background: src ? backdrop ?? "var(--checker)" : undefined,
       }}
     >
       {src ? (
@@ -91,7 +91,7 @@ export default function ExperienceVideo({
             preload="metadata"
             aria-label={title}
             onEnded={() => setStarted(false)}
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: backdrop ? "contain" : "cover" }}
           />
           {!started ? (
             <button
