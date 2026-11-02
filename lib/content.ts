@@ -125,6 +125,8 @@ export type Experience = {
   embed?: string;
   /** escena de Spline publicada (…/scene.splinecode); reemplaza al video principal */
   spline?: string;
+  /** etiqueta sobre la imagen de la card */
+  badge?: string;
   /** imagen de la card (null = trama del color) */
   image?: string;
   /** fragmento corto que se reproduce en la card al hacer click */
@@ -137,6 +139,7 @@ export const experiences: Experience[] = [
     slug: "turnaround",
     image: "/img/experiencias/turnaround.png",
     clip: "/video/turnaround-fragmento.mp4",
+    badge: "Giro 360°",
     title: "Turnaround",
     subtitle: "El stick, desde todos los ángulos",
     summary: "Girá el producto 360° y descubrí cada detalle de la barra, la tapa y el mecanismo twist-up.",
@@ -150,6 +153,8 @@ export const experiences: Experience[] = [
   {
     slug: "3d-interactivo",
     image: "/img/experiencias/3d-interactivo.jpg",
+    clip: "/video/3d-interactivo-fragmento.mp4",
+    badge: "Modelo 3D",
     // pegar acá la URL de "Code export" de Spline cuando la escena esté publicada
     spline: "not-exported-yet",
     title: "3D interactivo",
@@ -175,6 +180,7 @@ export const experiences: Experience[] = [
     slug: "realidad-aumentada",
     image: "/img/experiencias/realidad-aumentada.jpg",
     clip: "/video/ra-superficie-fragmento.mp4",
+    badge: "Realidad aumentada",
     videos: [
       {
         title: "RA — Filtro facial",

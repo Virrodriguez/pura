@@ -98,9 +98,9 @@ export default function ExperienceCard({ exp, index }: { exp: Experience; index:
           />
         ) : null}
         <span className={styles.glow} aria-hidden="true" />
-        {exp.clip ? (
+        {exp.badge ? (
           <span className={styles.badge} aria-hidden="true">
-            Giro 360°
+            {exp.badge}
           </span>
         ) : exp.image ? null : (
           <span className={styles.badge}>Video próximamente</span>
