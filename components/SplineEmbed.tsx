@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const VIEWER_SRC = "https://cdn.spline.design/@splinetool/viewer@2.0.118/build/spline-viewer.webgpu.js";
+// misma versión que el embed exportado desde Spline; build WebGPU si el navegador lo soporta, si no la estándar (WebGL)
+const VIEWER_BASE = "https://cdn.spline.design/@splinetool/viewer@2.0.127/build/";
+const viewerSrc = () =>
+  VIEWER_BASE + (typeof navigator !== "undefined" && "gpu" in navigator ? "spline-viewer.webgpu.js" : "spline-viewer.js");
 
 /** URL de escena publicada en Spline (prod.spline.design/.../scene.splinecode) */
 const isPublished = (url?: string) => !!url && /^https:\/\/.+\.splinecode$/.test(url);
@@ -23,10 +26,11 @@ export default function SplineEmbed({ url, poster, title }: { url?: string; post
     if (!active || !published || !mountRef.current) return;
     const mount = mountRef.current;
 
-    if (!document.querySelector(`script[src="${VIEWER_SRC}"]`)) {
+    const src = viewerSrc();
+    if (!document.querySelector(`script[src="${src}"]`)) {
       const s = document.createElement("script");
       s.type = "module";
-      s.src = VIEWER_SRC;
+      s.src = src;
       document.head.appendChild(s);
     }
     const viewer = document.createElement("spline-viewer");

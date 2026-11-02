@@ -156,7 +156,7 @@ export const experiences: Experience[] = [
     clip: "/video/3d-interactivo-fragmento.mp4",
     badge: "Modelo 3D",
     // pegar acá la URL de "Code export" de Spline cuando la escena esté publicada
-    spline: "not-exported-yet",
+    spline: "https://prod.spline.design/NRX403xtFaSFNlAJ/scene.splinecode",
     title: "3D interactivo",
     subtitle: "Abrilo, giralo, usalo",
     summary: "Manipulá el stick en 3D: sacale la tapa, girá la base y mirá cómo aparece la barra.",
