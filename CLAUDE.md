@@ -6,6 +6,11 @@ Sitio de PURA – Protección Solar Natural (protector solar facial en barra). N
 - `npm run dev` — servidor local (http://localhost:3000)
 - `npm run build` — build de producción (correr antes de cada commit)
 
+## Git y ramas
+- Repositorio: https://github.com/Virrodriguez/pura (remote `origin`).
+- `develop`: rama de pruebas. Todo cambio nuevo se commitea y sube acá.
+- `main`: lo que está en producción. Solo se actualiza mergeando `develop` cuando Virginia lo pide.
+
 ## Estructura
 - `lib/content.ts` — TODO el texto, las líneas, las experiencias y la navegación. Editar contenido acá, no en los componentes.
 - `app/` — rutas: `/`, `/sobre-la-marca`, `/nuestras-lineas`, `/experiencias`, `/experiencias/[slug]`.
