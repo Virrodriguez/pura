@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHead, RenderPlaceholder, SectionHead } from "@/components/ui";
+import Image from "next/image";
+import { PageHead, SectionHead } from "@/components/ui";
 import Intro from "@/components/home/Intro";
 import ParallaxImage from "@/components/ParallaxImage";
 import styles from "./page.module.css";
@@ -14,6 +15,12 @@ const values = [
   { title: "Natural", body: "Ingredientes de origen natural y filtros minerales elegidos por su eficacia y su amabilidad con la piel.", trama: "trama-amarilla" },
   { title: "Científica", body: "Fórmulas con FPS 50+ y amplio espectro UVA/UVB. Sin promesas imposibles: protección real y medible.", trama: "trama-celeste" },
   { title: "Diseñada", body: "Un objeto compacto y lindo de llevar, pensado para que reaplicar sea un gesto simple y cotidiano.", trama: "trama-naranja" },
+];
+
+const renders = [
+  { src: "/img/renders/tres-tapas-vuelan.png", label: "Frente", alt: "Los tres SUNBAR abiertos con las tapas flotando", sizes: "(max-width: 860px) 100vw, 50vw" },
+  { src: "/img/renders/clasica.png", label: "Abierto", alt: "SUNBAR Clásica sobre un pedestal", sizes: "(max-width: 860px) 100vw, 25vw" },
+  { src: "/img/renders/caja-clasica-detalle.jpg", label: "Detalle", alt: "Detalle de la caja del SUNBAR Clásica", sizes: "(max-width: 860px) 100vw, 25vw" },
 ];
 
 export default function SobreLaMarca() {
@@ -59,11 +66,14 @@ export default function SobreLaMarca() {
       <Intro eyebrow="El producto" titleLines={["Un formato pensado", "para reaplicar"]} />
 
       <section className="container" style={{ paddingBottom: "var(--section)" }}>
-        <SectionHead eyebrow="Próximamente" title="Renders del producto" />
+        <SectionHead eyebrow="SUNBAR en detalle" title="Renders del producto" />
         <div className={styles.renders}>
-          <RenderPlaceholder label="Render frente" />
-          <RenderPlaceholder label="Render abierto" />
-          <RenderPlaceholder label="Render detalle" />
+          {renders.map((r) => (
+            <figure key={r.src} className={styles.render}>
+              <Image src={r.src} alt={r.alt} fill sizes={r.sizes} />
+              <figcaption>{r.label}</figcaption>
+            </figure>
+          ))}
         </div>
         <Link href="/nuestras-lineas" className={styles.cta} data-cursor="Ir">
           Conocé nuestras líneas <span aria-hidden="true">→</span>
