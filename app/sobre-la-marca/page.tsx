@@ -19,8 +19,8 @@ const values = [
 
 const renders = [
   { src: "/img/renders/tres-tapas-vuelan.png", label: "Frente", alt: "Los tres SUNBAR abiertos con las tapas flotando", sizes: "(max-width: 860px) 100vw, 50vw" },
-  { src: "/img/renders/clasica.png", label: "Abierto", alt: "SUNBAR Clásica sobre un pedestal", sizes: "(max-width: 860px) 100vw, 25vw" },
-  { src: "/img/renders/caja-clasica-detalle.jpg", label: "Detalle", alt: "Detalle de la caja del SUNBAR Clásica", sizes: "(max-width: 860px) 100vw, 25vw" },
+  { src: "/img/renders/clasica.png", label: "Packaging primario", alt: "SUNBAR Clásica sobre un pedestal", sizes: "(max-width: 860px) 100vw, 25vw" },
+  { src: "/img/renders/caja-clasica.png", label: "Packaging secundario", alt: "Caja del SUNBAR Clásica sobre un pedestal", sizes: "(max-width: 860px) 100vw, 25vw" },
 ];
 
 export default function SobreLaMarca() {
