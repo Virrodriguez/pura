@@ -45,7 +45,6 @@ export default async function ExperienciaPage({ params }: { params: Promise<Para
               src={exp.embed}
               title={`${exp.title}: recorrido 360°`}
               allow="xr-spatial-tracking; gyroscope; accelerometer; fullscreen"
-              allowFullScreen
               loading="lazy"
               data-lenis-prevent
             />

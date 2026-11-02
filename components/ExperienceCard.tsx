@@ -16,7 +16,7 @@ import styles from "./ExperienceCard.module.css";
  * corto sobre la imagen y al salir vuelve a la imagen (en pantallas táctiles se
  * reproduce cuando la card entra en pantalla). El click lleva a la experiencia.
  */
-export default function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
+export default function ExperienceCard({ exp, index, priority = false }: { exp: Experience; index: number; priority?: boolean }) {
   const ref = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -83,7 +83,7 @@ export default function ExperienceCard({ exp, index }: { exp: Experience; index:
     <div className={styles.frame}>
       <div className={`${styles.media} ${exp.image ? "" : trama}`} data-playing={playing || undefined}>
         {exp.image ? (
-          <Image className={styles.img} src={exp.image} alt="" fill sizes="(max-width: 760px) 100vw, 50vw" />
+          <Image className={styles.img} src={exp.image} alt="" fill sizes="(max-width: 760px) 100vw, 50vw" priority={priority} />
         ) : null}
         {exp.clip ? (
           <video

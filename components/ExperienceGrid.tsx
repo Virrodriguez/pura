@@ -5,8 +5,11 @@ import { experiences } from "@/lib/content";
 import { gsap, useGSAP, MQ } from "@/lib/gsap";
 import ExperienceCard from "./ExperienceCard";
 
-/** Grilla 2×2 de experiencias, con una entrada escalonada liviana. */
-export default function ExperienceGrid() {
+/**
+ * Grilla 2×2 de experiencias, con una entrada escalonada liviana.
+ * `priority`: la grilla está arriba de todo (página Experiencias) y las primeras imágenes se cargan antes.
+ */
+export default function ExperienceGrid({ priority = false }: { priority?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
@@ -29,7 +32,7 @@ export default function ExperienceGrid() {
   return (
     <div ref={ref} className="exp-grid">
       {experiences.map((exp, i) => (
-        <ExperienceCard key={exp.slug} exp={exp} index={i} />
+        <ExperienceCard key={exp.slug} exp={exp} index={i} priority={priority && i < 2} />
       ))}
     </div>
   );

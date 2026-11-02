@@ -16,7 +16,7 @@ export default function Experiencias() {
         lead="Giralo, abrilo, llevalo a tu mano. Elegí una experiencia para ver el producto de cerca."
       />
       <section className="container" style={{ paddingBottom: "var(--section)" }}>
-        <ExperienceGrid />
+        <ExperienceGrid priority />
       </section>
     </>
   );

@@ -65,7 +65,7 @@ export default function SplineEmbed({ url, poster, title }: { url?: string; post
 
       {!ready ? (
         <div style={{ position: "absolute", inset: 0, transition: "opacity .5s", opacity: active ? 0.6 : 1 }}>
-          <Image src={poster} alt={`${title}: vista previa`} fill sizes="(max-width: 900px) 100vw, 1200px" style={{ objectFit: "cover" }} />
+          <Image src={poster} alt={`${title}: vista previa`} fill sizes="(max-width: 900px) 100vw, 1200px" style={{ objectFit: "cover" }} priority />
         </div>
       ) : null}
 
