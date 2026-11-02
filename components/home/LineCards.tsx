@@ -135,8 +135,8 @@ export default function LineCards() {
 
             <div className={styles.product} aria-hidden="true">
               <div className={styles.float}>
-                <Image className={styles.cap} src={line.render.cap} alt="" width={94} height={89} sizes="260px" loading="eager" />
-                <Image className={styles.body} src={line.render.body} alt="" width={94} height={156} sizes="260px" loading="eager" />
+                <Image className={styles.cap} src={line.render.cap} alt="" width={560} height={544} sizes="(max-width: 900px) 45vw, 260px" loading="eager" />
+                <Image className={styles.body} src={line.render.body} alt="" width={560} height={930} sizes="(max-width: 900px) 45vw, 260px" loading="eager" />
               </div>
             </div>
           </article>

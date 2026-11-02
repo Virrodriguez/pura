@@ -46,7 +46,7 @@ export const lines: Line[] = [
       "Nuestra barra original: filtros minerales de amplio espectro en una base de ceras y emolientes de origen natural. Pensada para llevar todos los días y reaplicar sin pensarlo.",
     features,
     card: "Filtros minerales en una barra que se desliza sin arrastre. Sin residuo blanco, para usar todos los días.",
-    render: { cap: "/img/lineas/clasica-tapa.png", body: "/img/lineas/clasica-cuerpo.png" },
+    render: { cap: "/img/lineas/clasica-tapa-hd.png", body: "/img/lineas/clasica-cuerpo-hd.png" },
     gallery: ["/img/renders/clasica.png", "/img/renders/caja-clasica.png", "/img/renders/clasica-chica-2.jpg"],
   },
   {
@@ -62,7 +62,7 @@ export const lines: Line[] = [
       "Menos ingredientes, elegidos uno por uno. Una barra hipoalergénica que cuida las zonas más delicadas del rostro: contorno de ojos, nariz y orejas.",
     features,
     card: "Fórmula suave y sin fragancia para pieles reactivas. Calma mientras protege, incluso en el contorno de ojos.",
-    render: { cap: "/img/lineas/pieles-sensibles-tapa.png", body: "/img/lineas/pieles-sensibles-cuerpo.png" },
+    render: { cap: "/img/lineas/pieles-sensibles-tapa-hd.png", body: "/img/lineas/pieles-sensibles-cuerpo-hd.png" },
     gallery: ["/img/renders/pieles-sensibles.png", "/img/renders/caja-pieles-sensibles.png", "/img/renders/pieles-sensibles-chica-2.jpg"],
   },
   {
@@ -78,7 +78,7 @@ export const lines: Line[] = [
       "Pigmentos minerales que se funden con la piel. Protege, empareja el tono y reemplaza la base en los días de sol.",
     features,
     card: "Pigmentos minerales que se funden con la piel. Protege, empareja el tono y reemplaza la base en los días de sol.",
-    render: { cap: "/img/lineas/con-color-tapa.png", body: "/img/lineas/con-color-cuerpo.png" },
+    render: { cap: "/img/lineas/con-color-tapa-hd.png", body: "/img/lineas/con-color-cuerpo-hd.png" },
     gallery: ["/img/renders/con-color.png", "/img/renders/caja-con-color.png", "/img/renders/con-color-chica.jpg"],
   },
 ];
