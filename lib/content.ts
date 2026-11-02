@@ -135,7 +135,7 @@ export const experiences: Experience[] = [
     subtitle: "El stick, desde todos los ángulos",
     summary: "Girá el producto 360° y descubrí cada detalle de la barra, la tapa y el mecanismo twist-up.",
     body:
-      "Un recorrido completo alrededor del SUNSTICK: la forma ovalada de la barra, la textura del envase y cómo sube y baja con un giro de la base.",
+      "Un recorrido completo alrededor del SUNBAR: la forma ovalada de la barra, la textura del envase y cómo sube y baja con un giro de la base.",
     video: "/video/turnaround.mp4",
     poster: "/img/experiencias/turnaround-poster.jpg",
     backdrop: "linear-gradient(#C2C1BC, #CDCDC8)",

@@ -4,7 +4,7 @@ import ExperienceGrid from "@/components/ExperienceGrid";
 
 export const metadata: Metadata = {
   title: "Viví la experiencia",
-  description: "Cuatro formas de conocer el SUNSTICK de PURA: turnaround, 3D interactivo, VR-360 y realidad aumentada.",
+  description: "Cuatro formas de conocer el SUNBAR de PURA: turnaround, 3D interactivo, VR-360 y realidad aumentada.",
 };
 
 export default function Experiencias() {
