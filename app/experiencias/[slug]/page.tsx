@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { experiences } from "@/lib/content";
 import { PageHead } from "@/components/ui";
@@ -56,6 +57,15 @@ export default async function ExperienciaPage({ params }: { params: Promise<Para
                 <ExperienceVideo src={v.src} title={v.title} accent={exp.accent} poster={v.poster} ratio="9 / 16" />
                 <h2 className={styles.videoTitle}>{v.title}</h2>
                 <p className={styles.videoBody}>{v.body}</p>
+                {v.qr && (
+                  <div className={styles.qr}>
+                    <Image src={v.qr} alt={`Código QR para probar ${v.title} en TikTok`} width={120} height={120} />
+                    <p>
+                      <strong>Probalo vos</strong>
+                      Escaneá el QR con la cámara del celular y abrilo en TikTok.
+                    </p>
+                  </div>
+                )}
               </article>
             ))}
           </div>

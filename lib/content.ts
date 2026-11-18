@@ -120,7 +120,7 @@ export type Experience = {
   poster?: string;
   backdrop?: string;
   /** varios videos en cards una al lado de la otra (reemplazan al video principal) */
-  videos?: { title: string; body: string; src: string; poster: string }[];
+  videos?: { title: string; body: string; src: string; poster: string; /** QR para probar el efecto */ qr?: string }[];
   /** URL para incrustar (iframe), p. ej. un recorrido 360° de Kuula; reemplaza al video principal */
   embed?: string;
   /** escena de Spline publicada (…/scene.splinecode); reemplaza al video principal */
@@ -190,12 +190,14 @@ export const experiences: Experience[] = [
         body: "Filtro de realidad aumentada que proyecta el packaging octogonal sobre el rostro del usuario.",
         src: "/video/ra-filtro-facial.mp4",
         poster: "/img/experiencias/ra-filtro-facial-poster-final.jpg",
+        qr: "/img/qr/qr-ra-filtro-facial.png",
       },
       {
         title: "RA — Superficie real",
         body: "Realidad aumentada de superficie: el estuche aparece a escala real sobre cualquier mesa.",
         src: "/video/ra-superficie-real.mp4",
         poster: "/img/experiencias/ra-superficie-poster.jpg",
+        qr: "/img/qr/qr-ra-superficie.png",
       },
     ],
     title: "Realidad aumentada",

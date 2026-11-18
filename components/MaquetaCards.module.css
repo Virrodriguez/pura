@@ -1,0 +1,132 @@
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  padding: clamp(16px, 1.8vw, 24px);
+  border: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.6s var(--ease-out), background-size 0.9s var(--ease-out);
+}
+.card:global(.trama-naranja) {
+  color: var(--blanco);
+}
+
+.number,
+.label {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.4s, transform 0.6s var(--ease-out);
+}
+.number {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.label {
+  display: grid;
+  gap: 2px;
+}
+.label span {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.label strong {
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* la foto de la maqueta queda oculta hasta el hover / tap */
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #e6e5e3;
+  opacity: 0;
+  clip-path: inset(100% 0 0 0 round var(--radius-lg));
+  transition: opacity 0.4s, clip-path 0.8s var(--ease-out);
+}
+.photo img {
+  object-fit: cover;
+  transform: scale(1.12);
+  transition: transform 1.2s var(--ease-out);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--topo);
+  outline-offset: 3px;
+}
+
+.card[data-open] .photo,
+.card:focus-visible .photo {
+  opacity: 1;
+  clip-path: inset(0 0 0 0 round var(--radius-lg));
+}
+.card[data-open] .photo img,
+.card:focus-visible .photo img {
+  transform: scale(1);
+}
+.card[data-open] .number,
+.card[data-open] .label,
+.card:focus-visible .number,
+.card:focus-visible .label {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-6px);
+  }
+  .card:hover .photo {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round var(--radius-lg));
+  }
+  .card:hover .photo img {
+    transform: scale(1);
+  }
+  .card:hover .number,
+  .card:hover .label {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .photo,
+  .photo img,
+  .number,
+  .label {
+    transition: opacity 0.3s;
+  }
+  .photo {
+    clip-path: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

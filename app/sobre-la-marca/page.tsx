@@ -4,6 +4,7 @@ import Image from "next/image";
 import { PageHead, SectionHead } from "@/components/ui";
 import Intro from "@/components/home/Intro";
 import ParallaxImage from "@/components/ParallaxImage";
+import MaquetaCards, { type Maqueta } from "@/components/MaquetaCards";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -21,6 +22,14 @@ const renders = [
   { src: "/img/renders/tres-tapas-vuelan.png", label: "Frente", alt: "Los tres SUNBAR abiertos con las tapas flotando", sizes: "(max-width: 860px) 100vw, 50vw" },
   { src: "/img/renders/clasica.png", label: "Packaging primario", alt: "SUNBAR Clásica sobre un pedestal", sizes: "(max-width: 860px) 100vw, 25vw" },
   { src: "/img/renders/caja-clasica.png", label: "Packaging secundario", alt: "Caja del SUNBAR Clásica sobre un pedestal", sizes: "(max-width: 860px) 100vw, 25vw" },
+];
+
+// maquetas físicas: la foto aparece al hacer hover sobre cada bloque
+const maquetas: Maqueta[] = [
+  { src: "/img/maqueta/caja-frente.jpg", group: "Caja", side: "Frente", alt: "Maqueta de la caja del SUNBAR, frente", trama: "trama-amarilla" },
+  { src: "/img/maqueta/caja-dorso.jpg", group: "Caja", side: "Dorso", alt: "Maqueta de la caja del SUNBAR, dorso", trama: "trama-celeste" },
+  { src: "/img/maqueta/protector-frente.jpg", group: "Protector", side: "Frente", alt: "Maqueta del protector SUNBAR, frente", trama: "trama-naranja" },
+  { src: "/img/maqueta/protector-dorso.jpg", group: "Protector", side: "Dorso", alt: "Maqueta del protector SUNBAR, dorso", trama: "trama-amarilla" },
 ];
 
 export default function SobreLaMarca() {
@@ -75,6 +84,11 @@ export default function SobreLaMarca() {
             </figure>
           ))}
         </div>
+      </section>
+
+      <section className="container" style={{ paddingBottom: "var(--section)" }}>
+        <SectionHead eyebrow="Del render a la mano" title="Maquetas del packaging" />
+        <MaquetaCards items={maquetas} />
         <Link href="/nuestras-lineas" className={styles.cta} data-cursor="Ir">
           Conocé nuestras líneas <span aria-hidden="true">→</span>
         </Link>
