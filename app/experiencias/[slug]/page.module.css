@@ -70,35 +70,24 @@
   max-width: 42ch;
 }
 
-/* QR para probar el efecto de RA */
-.qr {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 6px;
-  padding: 10px 16px 10px 10px;
-  border: 1.5px solid var(--topo);
-  border-radius: var(--radius);
-  width: fit-content;
-}
-.qr img {
-  flex: none;
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  background: #fff;
-}
-.qr p {
+/* título y texto a la izquierda, QR para probar el efecto a la derecha */
+.videoInfo {
   display: grid;
-  gap: 4px;
-  max-width: 24ch;
-  font-size: var(--fs-xs);
-  line-height: 1.45;
-  color: var(--topo-2);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 8px 16px;
 }
-.qr strong {
-  font-size: var(--fs-sm);
-  color: var(--topo);
+.videoInfo .videoTitle,
+.videoInfo .videoBody {
+  grid-column: 1;
+}
+.qr {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin-top: 10px;
+  width: clamp(96px, 9vw, 128px);
+  height: auto;
+  aspect-ratio: 1;
 }
 
 @media (max-width: 640px) {

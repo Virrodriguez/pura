@@ -55,17 +55,19 @@ export default async function ExperienciaPage({ params }: { params: Promise<Para
             {exp.videos.map((v) => (
               <article key={v.src} className={styles.videoCard}>
                 <ExperienceVideo src={v.src} title={v.title} accent={exp.accent} poster={v.poster} ratio="9 / 16" />
-                <h2 className={styles.videoTitle}>{v.title}</h2>
-                <p className={styles.videoBody}>{v.body}</p>
-                {v.qr && (
-                  <div className={styles.qr}>
-                    <Image src={v.qr} alt={`Código QR para probar ${v.title} en TikTok`} width={120} height={120} />
-                    <p>
-                      <strong>Probalo vos</strong>
-                      Escaneá el QR con la cámara del celular y abrilo en TikTok.
-                    </p>
-                  </div>
-                )}
+                <div className={styles.videoInfo}>
+                  <h2 className={styles.videoTitle}>{v.title}</h2>
+                  <p className={styles.videoBody}>{v.body}</p>
+                  {v.qr && (
+                    <Image
+                      src={v.qr}
+                      alt={`Código QR para probar ${v.title} en TikTok`}
+                      width={256}
+                      height={256}
+                      className={styles.qr}
+                    />
+                  )}
+                </div>
               </article>
             ))}
           </div>

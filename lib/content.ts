@@ -187,14 +187,14 @@ export const experiences: Experience[] = [
     videos: [
       {
         title: "RA — Filtro facial",
-        body: "Filtro de realidad aumentada que proyecta el packaging octogonal sobre el rostro del usuario.",
+        body: "Probá el filtro de realidad aumentada: escaneá el QR con tu celular y mirá el packaging de PURA sobre tu rostro.",
         src: "/video/ra-filtro-facial.mp4",
         poster: "/img/experiencias/ra-filtro-facial-poster-final.jpg",
         qr: "/img/qr/qr-ra-filtro-facial.png",
       },
       {
         title: "RA — Superficie real",
-        body: "Realidad aumentada de superficie: el estuche aparece a escala real sobre cualquier mesa.",
+        body: "Probá la realidad aumentada de superficie: escaneá el QR con tu celular y ubicá el estuche a escala real sobre cualquier mesa.",
         src: "/video/ra-superficie-real.mp4",
         poster: "/img/experiencias/ra-superficie-poster.jpg",
         qr: "/img/qr/qr-ra-superficie.png",
